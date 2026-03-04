@@ -1,76 +1,220 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import Pricing from '../components/Pricing.astro';
 ---
 
-<Layout title="Noxitech | Innovating the Future of Tech">
+<Layout title="Noxitech | Buy Back Your Time with Automation">
 	<!-- Hero Section -->
-	<section class="relative overflow-hidden py-24 sm:py-32">
-		<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(139,92,246,0.15),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.15),transparent_50%)]"></div>
-		<div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-			<div class="inline-flex items-center px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-400 text-xs font-medium mb-8 animate-fade-in">
-				<span class="relative flex h-2 w-2 mr-2">
-					<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-					<span class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-				</span>
-				Now accepting Beta partners for 2026
+	<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+		<!-- Artistic Background Elements: Starfield -->
+		<div class="absolute inset-0 -z-10 bg-[radial-gradient(#ffffff_0.5px,transparent_0.5px)] [background-size:24px_24px] opacity-[0.03]"></div>
+		<div class="absolute inset-0 -z-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:80px_80px] opacity-[0.05]"></div>
+		
+		<!-- Floating Animated Stars -->
+		<div class="absolute top-1/4 left-10 text-white opacity-20 animate-twinkle hidden lg:block">
+			<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0l3.09 8.36L24 12l-8.91 3.64L12 24l-3.09-8.36L0 12l8.91-3.64z"/></svg>
+		</div>
+		<div class="absolute bottom-1/3 right-20 text-white opacity-30 animate-twinkle-delayed hidden lg:block">
+			<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0l3.09 8.36L24 12l-8.91 3.64L12 24l-3.09-8.36L0 12l8.91-3.64z"/></svg>
+		</div>
+		<div class="absolute top-1/2 right-1/4 text-white opacity-10 animate-twinkle hidden lg:block">
+			<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0l3.09 8.36L24 12l-8.91 3.64L12 24l-3.09-8.36L0 12l8.91-3.64z"/></svg>
+		</div>
+		<div class="absolute bottom-1/4 left-1/4 text-purple-400 opacity-20 animate-twinkle-delayed hidden lg:block">
+			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0l3.09 8.36L24 12l-8.91 3.64L12 24l-3.09-8.36L0 12l8.91-3.64z"/></svg>
+		</div>
+
+		<div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+			<div class="inline-flex items-center px-4 py-2 rounded-full bg-white/5 text-white text-sm font-semibold mb-10 animate-fade-in shadow-sm border border-white/10">
+				<span class="bg-primary text-white px-2 py-0.5 rounded-full text-[10px] uppercase font-bold mr-2 tracking-wider">Ready to Scale?</span>
+				Helping businesses reclaim 20+ hours every week
+				<Icon name="lucide:arrow-right" class="w-4 h-4 ml-2 stroke-[3]" />
 			</div>
-			<h1 class="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-8">
-				Building the <span class="text-gradient">Next Generation</span> of Software
+			
+			<h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white mb-8 max-w-5xl mx-auto leading-[1.05]">
+				Stop Doing <span class="emphasis">Manual Work</span>. <br class="hidden sm:block"> Scale <span class="emphasis">Your Business.</span>
 			</h1>
-			<p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-				Noxitech provides enterprise-grade infrastructure and AI-driven solutions to help your business scale faster than ever before.
+			
+			<p class="text-xl max-w-3xl mx-auto mb-12 leading-relaxed font-medium text-secondary">
+				We help small business owners save thousands of hours and dollars by building custom solutions that work. Reclaim your focus and invest your time where it matters most.
 			</p>
-			<div class="flex flex-wrap justify-center gap-4">
-				<a href="/contact" class="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-2xl transition-all shadow-xl shadow-purple-500/30 hover:scale-[1.02] active:scale-95">
-					Start Building Now
+			
+			<div class="flex flex-wrap justify-center gap-6">
+				<a href="/contact" class="btn-primary !px-10 !py-5 !text-lg accent-glow">
+					Get a Free Audit
 				</a>
-				<a href="/about" class="px-8 py-4 glass hover:bg-white/10 text-white font-bold rounded-2xl transition-all active:scale-95">
-					See how it works
-				</a>
+			</div>
+		</div>
+
+		<!-- Scroll Indicator -->
+		<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-secondary animate-fade-in opacity-0" style="animation-delay: 1s;">
+			<span class="text-[10px] uppercase font-bold tracking-[0.2em]">Explore</span>
+			<div class="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1.5">
+				<div class="w-1 h-2 bg-purple-500 rounded-full animate-scroll-dot"></div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Features Section -->
-	<section class="py-24 bg-white/[0.02]">
-		<div class="max-w-7xl mx-auto px-6 lg:px-8">
+	<!-- The "Manual Chaos" Section -->
+	<section class="py-24 border-y border-white/5 bg-white/[0.01]">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="text-center mb-16">
+				<h2 class="text-base font-semibold text-primary uppercase tracking-[0.2em] mb-4">The Resistance</h2>
+				<h3 class="text-4xl font-bold text-white">Manual work is the <span class="emphasis">invisible ceiling</span> to your growth.</h3>
+			</div>
+
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				{[
-					{ title: "Ultra Performance", desc: "Engineered for speed with the latest hardware and optimized software stacks.", icon: "⚡" },
-					{ title: "AI-Native", desc: "Built-in intelligent agents that automate complex workflows and predict needs.", icon: "🤖" },
-					{ title: "Military Grade", desc: "Zero-trust architecture ensuring your data remains encrypted and sovereign.", icon: "🛡️" }
-				].map(feature => (
-					<div class="glass p-8 rounded-3xl hover:border-purple-500/30 transition-all group">
-						<div class="text-4xl mb-6 bg-slate-800 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">{feature.icon}</div>
-						<h3 class="text-xl font-bold text-white mb-4">{feature.title}</h3>
-						<p class="text-slate-400 leading-relaxed">{feature.desc}</p>
+					{ 
+						title: "Drowning in Admin", 
+						desc: "Your team spends hours every day manually moving data between apps instead of doing high-value work.", 
+						icon: "lucide:layers"
+					},
+					{ 
+						title: "Scaling Ceilings", 
+						desc: "You can't take on more clients because your manual processes are already at a breaking point.", 
+						icon: "lucide:trending-up"
+					},
+					{ 
+						title: "Missed Opportunities", 
+						desc: "Leads fall through the cracks and follow-ups are delayed because humans are the bottleneck.", 
+						icon: "lucide:megaphone"
+					}
+				].map(pain => (
+					<div class="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 hover:border-primary/30 transition-colors group">
+						<div class="mb-8 group-hover:scale-110 transition-transform duration-500">
+							<Icon name={pain.icon} class="w-10 h-10 text-primary" />
+						</div>
+						<h4 class="text-2xl font-bold text-white mb-4">{pain.title}</h4>
+						<p class="text-secondary leading-relaxed">{pain.desc}</p>
 					</div>
 				))}
 			</div>
 		</div>
 	</section>
 
-	<!-- Secondary CTA -->
-	<section class="py-24">
-		<div class="max-w-5xl mx-auto px-6 lg:px-8">
-			<div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-purple-900/40 to-blue-900/40 p-12 text-center border border-white/10">
-				<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
-				<h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to transform your workflow?</h2>
-				<p class="text-slate-300 mb-10 max-w-xl mx-auto">Join 500+ teams who have already switched to Noxitech for their core infrastructure.</p>
-				<a href="/pricing" class="inline-block px-10 py-4 bg-white text-slate-900 font-bold rounded-2xl hover:bg-slate-100 transition-all hover:scale-[1.02] active:scale-95">
-					View Pricing Plans
-				</a>
+	<!-- The Solution (Visual) -->
+	<section class="py-32 relative overflow-hidden bg-[#020202]">
+		<div class="max-w-7xl mx-auto px-6 text-center">
+			<h2 class="text-base font-semibold text-primary uppercase tracking-[0.2em] mb-4">The Logic</h2>
+			<h3 class="text-4xl sm:text-6xl font-black text-white mb-20">Transforming <span class="emphasis">Chaos Into Assets</span></h3>
+
+			<div class="relative flex flex-col md:flex-row items-center justify-between gap-12 max-w-5xl mx-auto p-12 rounded-[3.5rem] bg-white/5 border border-white/10">
+				<!-- Input -->
+				<div class="flex-1 text-center">
+					<div class="w-20 h-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6 opacity-60">
+						<Icon name="lucide:rotate-cw" class="w-8 h-8 text-white" />
+					</div>
+					<h4 class="text-white font-bold mb-2">The Mess</h4>
+					<p class="text-[10px] text-secondary uppercase tracking-widest">Manual Inputs</p>
+				</div>
+
+				<!-- Connection -->
+				<div class="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+
+				<!-- The Engine -->
+				<div class="relative w-48 h-48 flex items-center justify-center">
+					<div class="absolute inset-0 bg-primary/20 blur-[50px] rounded-full animate-pulse"></div>
+					<div class="relative w-full h-full rounded-3xl bg-black border-2 border-primary/50 flex flex-col items-center justify-center shadow-2xl shadow-primary/20">
+						<div class="mb-4 animate-spin-slow">
+							<Icon name="lucide:settings" class="w-12 h-12 text-primary" />
+						</div>
+						<span class="text-[10px] font-black text-primary tracking-[0.3em] uppercase">Engine</span>
+					</div>
+				</div>
+
+				<!-- Connection -->
+				<div class="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+
+				<!-- Output -->
+				<div class="flex-1 text-center">
+					<div class="w-20 h-20 rounded-2xl bg-primary/20 border border-primary/40 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20">
+						<Icon name="lucide:gem" class="w-8 h-8 text-primary" />
+					</div>
+					<h4 class="text-white font-bold mb-2">The Asset</h4>
+					<p class="text-[10px] text-secondary uppercase tracking-widest">Systemized ROI</p>
+				</div>
 			</div>
+		</div>
+	</section>
+
+	<!-- Key Services (The Foundations) -->
+	<section class="py-24">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="text-center mb-16">
+				<h2 class="text-base font-semibold text-primary uppercase tracking-[0.2em] mb-4">Specialties</h2>
+				<h3 class="text-4xl font-bold text-white">Core <span class="emphasis">Foundations</span></h3>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{[
+					{ 
+						title: "Pipeline Automation", 
+						desc: "We build systems that capture, score, and route leads instantly, ensuring no opportunity is ever lost.", 
+						icon: "lucide:zap" 
+					},
+					{ 
+						title: "Document Logic", 
+						desc: "Automated generation of contracts, invoices, and reports triggered by your business events.", 
+						icon: "lucide:file-text" 
+					},
+					{ 
+						title: "AI Business Agents", 
+						desc: "Custom-trained AI models that handle customer inquiries and data research tailored to your brand.", 
+						icon: "lucide:bot" 
+					}
+				].map(service => (
+					<div class="card-stella group">
+						<div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary/50 transition-colors">
+							<Icon name={service.icon} class="w-8 h-8 text-primary" />
+						</div>
+						<h3 class="text-2xl font-bold text-white mb-4">{service.title}</h3>
+						<p class="text-secondary leading-relaxed font-medium">{service.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- The Pricing -->
+	<Pricing />
+
+	<!-- Trust Signals / Social Proof -->
+	<section class="py-24 border-t border-white/5">
+		<div class="max-w-7xl mx-auto px-6 text-center">
+			<p class="text-[10px] uppercase font-bold tracking-[0.2em] mb-12 text-secondary/50">Systems We Master</p>
+			<div class="flex flex-wrap justify-center items-center gap-12 sm:gap-24 grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+				<span class="text-2xl font-bold text-white">OPENAI</span>
+				<span class="text-2xl font-bold text-white">GOOGLE</span>
+				<span class="text-2xl font-bold text-white">SLACK</span>
+				<span class="text-2xl font-bold text-white">ZAPIER</span>
+				<span class="text-2xl font-bold text-white">MAKE</span>
+			</div>
+		</div>
+	</section>
+
+	<!-- Final CTA -->
+	<section class="py-32 text-center relative overflow-hidden">
+		<div class="absolute inset-0 bg-primary/5 blur-[120px] rounded-full translate-y-1/2"></div>
+		<div class="relative z-10">
+			<h3 class="text-4xl sm:text-6xl font-black text-white mb-12">Building assets, <span class="emphasis">not just tasks.</span></h3>
+			<p class="text-xl text-secondary max-w-2xl mx-auto mb-12 px-6 font-medium">
+				Ready to reclaim your time? Let's audit your workflow and find your first 20 hours.
+			</p>
+			<a href="/contact" class="btn-primary !px-12 !py-6 !text-xl shadow-2xl">
+				Book a Free Audit
+			</a>
 		</div>
 	</section>
 </Layout>
 
 <style>
-	@keyframes fade-in {
-		from { opacity: 0; transform: translateY(10px); }
-		to { opacity: 1; transform: translateY(0); }
+	@keyframes spin-slow {
+		from { transform: rotate(0deg); }
+		to { transform: rotate(360deg); }
 	}
-	.animate-fade-in {
-		animation: fade-in 0.6s ease-out forwards;
+	.animate-spin-slow {
+		animation: spin-slow 12s linear infinite;
 	}
 </style>
