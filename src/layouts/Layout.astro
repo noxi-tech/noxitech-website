@@ -1,23 +1,67 @@
+---
+// src/layouts/Layout.astro
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = "Noxitech | Advanced Solutions", description = "Leading the future of technology with Noxitech." } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<ClientRouter />
 	</head>
-	<body>
-		<slot />
+	<body class="bg-[#030712] text-slate-200 font-['Outfit',sans-serif] selection:bg-purple-500/30 selection:text-purple-200">
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>
 
-<style>
-	html,
+<style is:global>
+	:root {
+		--accent-gradient: linear-gradient(45deg, #8b5cf6, #3b82f6);
+	}
+	
 	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	main {
+		flex: 1;
+	}
+
+	.glass {
+		background: rgba(255, 255, 255, 0.03);
+		backdrop-filter: blur(12px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
 	}
 </style>

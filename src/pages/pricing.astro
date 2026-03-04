@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const tiers = [
+  {
+    name: "Starter",
+    price: "$29",
+    description: "Perfect for startups and individuals exploring AI capabilities.",
+    features: ["5 Dedicated Agents", "100GB Cloud Storage", "Basic Support", "API Access"],
+    cta: "Start Free Trial",
+    featured: false
+  },
+  {
+    name: "Pro",
+    price: "$99",
+    description: "Scale your business with advanced tools and performance.",
+    features: ["Unlimited Agents", "1TB Cloud Storage", "Priority 24/7 Support", "Custom Model Training", "Advanced Analytics"],
+    cta: "Get Started",
+    featured: true
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    description: "Full-scale infrastructure for heavy enterprise demands.",
+    features: ["Custom Infrastructure", "Unlimited Storage", "Dedicated Account Manager", "On-premise Deployment", "White-glove Migration"],
+    cta: "Contact Sales",
+    featured: false
+  }
+];
+---
+
+<Layout title="Pricing | Noxitech" description="Choose the perfect plan for your business needs.">
+  <div class="py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <h2 class="text-base font-semibold leading-7 text-purple-500 uppercase tracking-widest">Pricing</h2>
+        <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Plans that scale with you</p>
+        <p class="mt-6 text-lg leading-8 text-slate-400 max-w-2xl mx-auto">
+          Simple, transparent pricing. No hidden fees. Choose the plan that works best for your team.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {tiers.map(tier => (
+          <div class={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 ${tier.featured ? 'bg-purple-900/10 border-purple-500 shadow-2xl shadow-purple-500/10 scale-105 z-10' : 'bg-white/5 border-white/10 hover:border-white/20'}`}>
+            {tier.featured && (
+              <span class="absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-purple-500 text-white text-xs font-bold rounded-full uppercase tracking-widest">Most Popular</span>
+            )}
+            <div class="mb-8">
+              <h3 class="text-xl font-bold text-white mb-2">{tier.name}</h3>
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold text-white">{tier.price}</span>
+                {tier.price !== "Custom" && <span class="text-slate-400">/month</span>}
+              </div>
+              <p class="mt-4 text-slate-400 text-sm leading-relaxed">{tier.description}</p>
+            </div>
+            <ul class="flex-1 space-y-4 mb-10">
+              {tier.features.map(feature => (
+                <li class="flex items-center gap-3 text-slate-300 text-sm">
+                  <svg class="h-5 w-5 text-purple-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <a href={tier.name === "Enterprise" ? "/contact" : "#"} class={`w-full py-4 px-6 rounded-2xl text-center font-bold transition-all active:scale-95 ${tier.featured ? 'bg-purple-600 text-white hover:bg-purple-700 shadow-lg shadow-purple-500/25' : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'}`}>
+              {tier.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
