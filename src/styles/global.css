@@ -1,1 +1,135 @@
 @import "tailwindcss";
+
+@theme {
+    /* Colors */
+    --color-primary: #9933FF;
+    --color-primary-hover: #B266FF;
+    --color-slate-900: #030303;
+    --color-slate-800: #09090b;
+    --color-brand-purple: #9933FF;
+    --color-text-secondary: rgba(255, 255, 255, 0.7);
+
+    /* Fonts */
+    --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+    --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+
+    /* Animations */
+    --animate-scroll-dot: scroll-dot 2s infinite;
+    --animate-twinkle: twinkle 4s ease-in-out infinite;
+    --animate-twinkle-delayed: twinkle 4s ease-in-out infinite 2s;
+    --animate-fade-in: fade-in 0.6s ease-out forwards;
+
+    @keyframes scroll-dot {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(12px);
+            opacity: 0;
+        }
+    }
+
+    @keyframes twinkle {
+
+        0%,
+        100% {
+            opacity: 0.1;
+            transform: scale(0.8);
+        }
+
+        50% {
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@layer utilities {
+    .btn-primary {
+        @apply relative inline-flex items-center justify-center px-8 py-3.5 font-semibold text-white transition-all duration-300 rounded-full bg-primary hover:bg-primary-hover shadow-lg shadow-purple-500/40 active:scale-95;
+    }
+
+    .btn-secondary {
+        @apply relative inline-flex items-center justify-center px-8 py-3.5 font-semibold text-white transition-all duration-300 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:scale-95;
+    }
+
+    .card-stella {
+        background-color: var(--color-slate-800);
+        padding: 2rem;
+        border-radius: 2.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .card-stella:hover {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        border-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .emphasis {
+        @apply font-serif italic text-primary;
+    }
+
+    .accent-glow {
+        box-shadow: 0 0 20px rgba(107, 26, 255, 0.3);
+    }
+
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .step-card {
+        @apply relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 transition-all duration-500 overflow-hidden;
+    }
+
+    .step-card::before {
+        content: '';
+        @apply absolute -top-24 -right-24 w-48 h-48 bg-primary/10 blur-[60px] rounded-full transition-opacity duration-500 opacity-0;
+    }
+
+    .step-card:hover::before {
+        @apply opacity-100;
+    }
+}
+
+/* Base resets & Global Styles */
+@layer base {
+    body {
+        @apply min-h-screen flex flex-col bg-slate-900 text-white font-sans;
+    }
+
+    p,
+    li,
+    .text-secondary {
+        color: var(--color-text-secondary);
+    }
+
+    main {
+        @apply flex-1;
+    }
+}
