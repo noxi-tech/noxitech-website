@@ -1,0 +1,72 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const tiers = [
+  {
+    name: "Starter",
+    price: "$29",
+    description: "Perfect for startups and individuals exploring AI capabilities.",
+    features: ["5 Dedicated Agents", "100GB Cloud Storage", "Basic Support", "API Access"],
+    cta: "Start Free Trial",
+    featured: false
+  },
+  {
+    name: "Pro",
+    price: "$99",
+    description: "Scale your business with advanced tools and performance.",
+    features: ["Unlimited Agents", "1TB Cloud Storage", "Priority 24/7 Support", "Custom Model Training", "Advanced Analytics"],
+    cta: "Get Started",
+    featured: true
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    description: "Full-scale infrastructure for heavy enterprise demands.",
+    features: ["Custom Infrastructure", "Unlimited Storage", "Dedicated Account Manager", "On-premise Deployment", "White-glove Migration"],
+    cta: "Contact Sales",
+    featured: false
+  }
+];
+---
+
+<section class="py-24 bg-white/[0.01]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-20">
+      <h2 class="text-base font-semibold leading-7 text-primary uppercase tracking-[0.2em]">Pricing Plans</h2>
+      <p class="mt-2 text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
+        Flexible <span class="emphasis">Plans</span> for <br> Every Business
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {tiers.map(tier => (
+        <div class={`relative flex flex-col p-10 rounded-[2.5rem] border transition-all duration-500 bg-[#0A0A0B]/50 backdrop-blur-sm ${tier.featured ? 'border-primary shadow-2xl shadow-primary/20 scale-105 z-10' : 'border-white/5 shadow-sm hover:border-white/10 hover:shadow-md'}`}>
+          {tier.featured && (
+            <span class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-primary text-white text-[10px] font-bold rounded-full uppercase tracking-widest">Most Popular</span>
+          )}
+          <div class="mb-10 text-center">
+            <h3 class="text-2xl font-bold text-white mb-4">{tier.name}</h3>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-5xl font-black text-white tracking-tighter">{tier.price}</span>
+              {tier.price !== "Custom" && <span class="font-medium text-secondary">/month</span>}
+            </div>
+            <p class="mt-6 text-sm leading-relaxed font-medium text-secondary">{tier.description}</p>
+          </div>
+          <ul class="flex-1 space-y-5 mb-12">
+            {tier.features.map(feature => (
+              <li class="flex items-center gap-3 font-medium text-sm text-secondary">
+                <div class="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Icon name="lucide:check" class="h-3 w-3 text-primary stroke-[4]" />
+                </div>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <a href={tier.name === "Enterprise" ? "/contact" : "#"} class={tier.featured ? 'btn-primary text-center' : 'btn-secondary text-center'}>
+            {tier.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

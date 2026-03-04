@@ -1,7 +1,7 @@
 ---
 // src/layouts/Layout.astro
 import { ClientRouter } from 'astro:transitions';
-import Header from '../components/header.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
@@ -10,7 +10,7 @@ interface Props {
 	description?: string;
 }
 
-const { title = "Noxitech | Advanced Solutions", description = "Leading the future of technology with Noxitech." } = Astro.props;
+const { title = "Noxitech | Digital Solutions & Automation", description = "Bespoke digital solutions, automated workflows, and AI integrations for the modern enterprise." } = Astro.props;
 ---
 
 <!doctype html>
@@ -22,12 +22,22 @@ const { title = "Noxitech | Advanced Solutions", description = "Leading the futu
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		
+		<!-- Fonts used in Stella -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+		
 		<ClientRouter />
 	</head>
-	<body class="bg-[#030712] text-slate-200 font-['Outfit',sans-serif] selection:bg-purple-500/30 selection:text-purple-200">
+	<body class="bg-[#030303] text-white font-['Figtree',sans-serif] selection:bg-purple-500/30 selection:text-white">
+		<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+			<!-- Space/Galaxy Glows -->
+			<div class="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-purple-900/20 rounded-full blur-[120px]"></div>
+			<div class="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] bg-[#9933FF]/10 rounded-full blur-[120px]"></div>
+			<div class="absolute top-1/4 left-1/4 w-[40%] h-[40%] bg-purple-600/5 rounded-full blur-[100px]"></div>
+		</div>
+		
 		<Header />
 		<main>
 			<slot />
@@ -36,32 +46,4 @@ const { title = "Noxitech | Advanced Solutions", description = "Leading the futu
 	</body>
 </html>
 
-<style is:global>
-	:root {
-		--accent-gradient: linear-gradient(45deg, #8b5cf6, #3b82f6);
-	}
-	
-	body {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-	}
-	
-	main {
-		flex: 1;
-	}
-
-	.glass {
-		background: rgba(255, 255, 255, 0.03);
-		backdrop-filter: blur(12px);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-	}
-
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-</style>
+</html>
