@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout
+    title="FAQs | Noxitech"
+    description="Frequently asked questions about our process, pricing, and technology."
+>
+    <div class="pt-32 pb-24 sm:pt-40 sm:pb-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <!-- Header -->
+            <div class="max-w-3xl mx-auto text-center mb-24 relative">
+                <div
+                    class="absolute inset-x-0 -top-24 bg-primary/20 blur-[120px] -z-10 h-64 rounded-full opacity-50 pointer-events-none"
+                >
+                </div>
+                <h2
+                    class="text-base font-semibold leading-7 text-primary uppercase tracking-[0.2em]"
+                >
+                    Knowledge Base
+                </h2>
+                <h1
+                    class="mt-2 text-5xl sm:text-7xl font-black tracking-tight text-white leading-tight"
+                >
+                    Frequently <br />
+                    <span class="emphasis">Asked Questions</span>
+                </h1>
+                <p class="mt-8 text-xl leading-8 font-medium text-secondary">
+                    Everything you need to know about working with Noxitech, the
+                    technology we deploy, and how we measure ROI.
+                </p>
+            </div>
+
+            <!-- FAQ Accordion Layout -->
+            <div class="max-w-4xl mx-auto space-y-6 mb-32">
+                {
+                    [
+                        {
+                            q: "What exactly do you deliver?",
+                            a: "We build custom, autonomous software engines tailored to your unique business logic. Rather than selling you another monthly subscription for generic software, we create private operational assets, such as custom API integrators, automated data pipelines, and intelligent routing scripts.",
+                        },
+                        {
+                            q: "Do I have to maintain the code?",
+                            a: "No. While you own the data and strictly control the environment the script runs in, we provide monthly reporting and upkeep. If an API endpoint changes or a software vendor updates their systems, we automatically adjust your engine so there's zero downtime or maintenance required from your team.",
+                        },
+                        {
+                            q: "How do you calculate ROI?",
+                            a: "Before writing a single line of code, we run a full 'Mathematical Audit' on your workflow. We calculate the manual hours spent per week on the task, multiply it by your team's hourly rate, and map it against the one-time development cost of our engine. We only take on projects where the automation guarantees a full return on investment in under 90 days.",
+                        },
+                        {
+                            q: "What systems can you integrate with?",
+                            a: "If it has a public API, a webhook, or a scalable database, we can integrate it. We actively build engines linking Shopify, Stripe, HubSpot, Salesforce, Airtable, Notion, Discord, custom PostgreSQL databases, and hundreds of other enterprise tools.",
+                        },
+                        {
+                            q: "How long does it take to deploy an automation?",
+                            a: "Most core workflow automations are scoped, tested, and fully deployed within 3 to 4 weeks. High-complexity enterprise architectures involving custom-trained AI or multiple legacy systems may take 6 to 8 weeks. You will have a precise timeline before we begin.",
+                        },
+                        {
+                            q: "Is our business data secure?",
+                            a: "Absolutely. Security is central to our operational DNA. We utilize robust encryption, strictly scoped API keys, and secure cloud environments. Your automation engine processes data securely, and Noxitech does not store, sell, or utilize your internal business data.",
+                        },
+                    ].map((faq) => (
+                        <div class="p-8 rounded-4xl bg-white/5 border border-white/10 hover:border-primary/40 transition-all group group-open relative overflow-hidden text-left w-full h-full flex flex-col">
+                            <div class="flex gap-6 relative z-10">
+                                <div class="mt-1 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+                                    <Icon
+                                        name="lucide:message-circle-question"
+                                        class="w-5 h-5 text-primary"
+                                    />
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white mb-3 tracking-wide">
+                                        {faq.q}
+                                    </h3>
+                                    <p class="text-secondary leading-relaxed font-medium">
+                                        {faq.a}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- CTA Block -->
+            <div
+                class="max-w-4xl mx-auto rounded-[3rem] p-12 text-center bg-slate-950 border border-white/5 relative overflow-hidden"
+            >
+                <div
+                    class="absolute -right-24 -bottom-24 w-64 h-64 bg-primary/20 blur-[100px] rounded-full pointer-events-none"
+                >
+                </div>
+                <div class="relative z-10">
+                    <Icon
+                        name="lucide:mail"
+                        class="w-12 h-12 text-primary mx-auto mb-6 opacity-80"
+                    />
+                    <h2 class="text-3xl font-black text-white mb-4">
+                        Still have a <span class="emphasis">Question?</span>
+                    </h2>
+                    <p class="text-secondary mb-10 text-lg font-medium">
+                        Reach out to our team directly. We're happy to discuss
+                        your specific infrastructure needs.
+                    </p>
+                    <a href="/contact" class="btn-primary px-10! py-4! text-lg!"
+                        >Contact Support</a
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

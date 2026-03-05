@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout
+    title="Case Studies | Noxitech"
+    description="Explore our proven track record of saving businesses thousands of hours and dollars through automation."
+>
+    <div class="pt-32 pb-24 sm:pt-40 sm:pb-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <!-- Header -->
+            <div class="max-w-3xl mx-auto text-center mb-24 relative">
+                <div
+                    class="absolute inset-x-0 -top-24 bg-primary/20 blur-[120px] -z-10 h-64 rounded-full opacity-50 pointer-events-none"
+                >
+                </div>
+                <h2
+                    class="text-base font-semibold leading-7 text-primary uppercase tracking-[0.2em]"
+                >
+                    Proven Results
+                </h2>
+                <h1
+                    class="mt-2 text-5xl sm:text-7xl font-black tracking-tight text-white leading-tight"
+                >
+                    Client <span class="emphasis">Success Stories</span>
+                </h1>
+                <p class="mt-8 text-xl leading-8 font-medium text-secondary">
+                    See exactly how we've helped businesses like yours dismantle
+                    their manual bottlenecks and build permanent operational
+                    assets.
+                </p>
+            </div>
+
+            <!-- Case Studies Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32">
+                {
+                    [
+                        {
+                            title: "E-Commerce Fulfillment Automation",
+                            client: "National Retailer",
+                            challenge:
+                                "The team was spending 40+ hours a week manually porting Shopify orders into a legacy warehouse management system, leading to shipping delays and costly human errors.",
+                            solution:
+                                "We built a custom API engine that instantly syncs orders, generates shipping labels, and updates inventory databases in real-time.",
+                            roi: "$120,000 / year",
+                            timeSaved: "160 hours / month",
+                            icon: "lucide:shopping-bag",
+                        },
+                        {
+                            title: "Financial Lead Routing",
+                            client: "Boutique Financial Firm",
+                            challenge:
+                                "High-net-worth leads were sitting in their CRM for up to 24 hours before a human manually assigned them to the correct advisor based on complex territory rules.",
+                            solution:
+                                "Deployed a smart-routing algorithm that qualifies, scores, and instantly routes leads to the correct advisor while simultaneously texting them the context.",
+                            roi: "35% increase in conversion",
+                            timeSaved: "Response time: < 1 min",
+                            icon: "lucide:briefcase",
+                        },
+                        {
+                            title: "Automated Onboarding Flow",
+                            client: "B2B SaaS Agency",
+                            challenge:
+                                "Client onboarding was a chaotic mix of Google Forms, manual Email introductions, and redundant Notion setups that took almost 3 days to complete.",
+                            solution:
+                                "An autonomous flow triggered via Stripe payment that inherently generates bespoke client portals, sends welcome packets, and sets up project management boards.",
+                            roi: "Zero touch needed",
+                            timeSaved: "12 hours / week",
+                            icon: "lucide:users",
+                        },
+                        {
+                            title: "AI Customer Support Engine",
+                            client: "Consumer Tech Brand",
+                            challenge:
+                                "Support tickets for simple FAQ questions were overwhelming the human staff, increasing resolution times to unacceptable levels.",
+                            solution:
+                                "Integrated a custom-trained AI model directly into their ticketing dashboard to auto-resolve tier 1 queries instantly.",
+                            roi: "70% ticket deflection",
+                            timeSaved: "Ticket volume reduced by half",
+                            icon: "lucide:bot",
+                        },
+                    ].map((study) => (
+                        <div class="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 hover:border-primary/30 transition-all group flex flex-col h-full relative overflow-hidden">
+                            <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-primary/10 blur-[60px] rounded-full transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none" />
+
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                                    <Icon
+                                        name={study.icon}
+                                        class="w-8 h-8 text-primary"
+                                    />
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">
+                                        {study.title}
+                                    </h3>
+                                    <div class="text-sm text-primary uppercase tracking-widest font-bold mt-1">
+                                        {study.client}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-6 grow mb-10">
+                                <div>
+                                    <h4 class="text-sm uppercase tracking-wider text-white/50 font-bold mb-2">
+                                        The Challenge
+                                    </h4>
+                                    <p class="text-secondary leading-relaxed font-medium">
+                                        {study.challenge}
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm uppercase tracking-wider text-white/50 font-bold mb-2">
+                                        The Solution
+                                    </h4>
+                                    <p class="text-secondary leading-relaxed font-medium">
+                                        {study.solution}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10 mt-auto">
+                                <div class="p-4 rounded-xl bg-slate-900 border border-white/5">
+                                    <span class="block text-[10px] uppercase font-bold text-white/40 mb-1">
+                                        Time Reclaimed
+                                    </span>
+                                    <span class="block text-lg font-black text-emerald-400">
+                                        {study.timeSaved}
+                                    </span>
+                                </div>
+                                <div class="p-4 rounded-xl bg-slate-900 border border-white/5">
+                                    <span class="block text-[10px] uppercase font-bold text-white/40 mb-1">
+                                        Estimated Value
+                                    </span>
+                                    <span class="block text-lg font-black text-primary">
+                                        {study.roi}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Final CTA -->
+            <div
+                class="max-w-4xl mx-auto rounded-[3rem] p-12 text-center bg-primary/10 border border-primary/20 relative overflow-hidden"
+            >
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-black text-white mb-6">
+                        Ready to write your <span class="emphasis"
+                            >Success Story?</span
+                        >
+                    </h2>
+                    <p class="text-secondary mb-10 text-lg font-medium">
+                        Let's audit your workflow and design a custom automation
+                        engine that delivers real ROI.
+                    </p>
+                    <a href="/contact" class="btn-primary px-10! py-4! text-lg!"
+                        >Get Started Free</a
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
