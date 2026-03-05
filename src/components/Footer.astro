@@ -1,56 +1,110 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-white/5 bg-[#030303] py-16">
+<footer class="border-t border-white/5 bg-slate-900 py-16">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-16 items-end">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-16 items-start">
       <div class="col-span-1 md:col-span-2">
-        <a href="/" class="inline-flex flex-col items-center mb-8 group">
-          <img src="/assets/light_logo.svg" alt="Noxitech Logo" class="w-20 h-20 group-hover:opacity-80 transition-opacity" />
-          <div class="text-3xl font-black text-white tracking-tight text-center">
+        <a href="/" class="inline-flex items-center gap-4 mb-6 group">
+          <img
+            src="/assets/light_logo.svg"
+            alt="Noxitech Logo"
+            class="w-12 h-12 group-hover:opacity-80 transition-opacity"
+          />
+          <div class="text-3xl font-black text-white tracking-tight">
             <span class="text-primary">Noxi</span>tech
           </div>
         </a>
         <p class="max-w-sm mb-8 text-secondary leading-relaxed font-medium">
-          Empowering business owners by building custom solutions that work. Reclaim your time and scale your enterprise with intelligent automation.
+          Empowering business owners by building custom solutions that work.
+          Reclaim your time and scale your enterprise with intelligent
+          automation.
         </p>
         <div class="flex space-x-4">
-          <a href="#" class="text-white hover:text-purple-500 transition-colors">
+          <a
+            href="#"
+            class="text-white hover:text-purple-500 transition-colors"
+          >
             <span class="sr-only">Twitter</span>
             <Icon name="lucide:twitter" class="h-6 w-6" />
           </a>
-          <a href="#" class="text-white hover:text-purple-500 transition-colors">
+          <a
+            href="#"
+            class="text-white hover:text-purple-500 transition-colors"
+          >
             <span class="sr-only">GitHub</span>
             <Icon name="lucide:github" class="h-6 w-6" />
           </a>
         </div>
       </div>
       <div>
-        <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Services</h3>
+        <h3
+          class="text-white font-semibold mb-4 text-sm uppercase tracking-wider"
+        >
+          Services
+        </h3>
         <ul class="space-y-2">
-          <li><a href="#" class="hover:text-white transition-colors text-sm">Digital Solutions</a></li>
-          <li><a href="#" class="hover:text-white transition-colors text-sm">Automated Workflows</a></li>
-          <li><a href="#" class="hover:text-white transition-colors text-sm">AI Integrations</a></li>
-          <li><a href="#" class="hover:text-white transition-colors text-sm">Cloud Infrastructure</a></li>
+          <li>
+            <a href="#" class="hover:text-white transition-colors text-sm"
+              >Digital Solutions</a
+            >
+          </li>
+          <li>
+            <a href="#" class="hover:text-white transition-colors text-sm"
+              >Automated Workflows</a
+            >
+          </li>
+          <li>
+            <a href="#" class="hover:text-white transition-colors text-sm"
+              >AI Integrations</a
+            >
+          </li>
+          <li>
+            <a href="#" class="hover:text-white transition-colors text-sm"
+              >Cloud Infrastructure</a
+            >
+          </li>
         </ul>
       </div>
       <div>
-        <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Company</h3>
+        <h3
+          class="text-white font-semibold mb-4 text-sm uppercase tracking-wider"
+        >
+          Company
+        </h3>
         <ul class="space-y-2">
-          <li><a href="/about" class="hover:text-white transition-colors text-sm">About</a></li>
-          <li><a href="/pricing" class="hover:text-white transition-colors text-sm">Pricing</a></li>
-          <li><a href="/contact" class="hover:text-white transition-colors text-sm">Contact</a></li>
-          <li><a href="#" class="hover:text-white transition-colors text-sm">Careers</a></li>
+          <li>
+            <a href="/about" class="hover:text-white transition-colors text-sm"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="/contact"
+              class="hover:text-white transition-colors text-sm">Contact</a
+            >
+          </li>
+          <li>
+            <a href="#" class="hover:text-white transition-colors text-sm"
+              >Careers</a
+            >
+          </li>
         </ul>
       </div>
     </div>
-    <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary">
+    <div
+      class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary"
+    >
       <p>&copy; {currentYear} Noxitech Inc. All rights reserved.</p>
       <div class="flex space-x-6">
-        <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
-        <a href="/terms" class="hover:text-white transition-colors">Terms of Service</a>
+        <a href="/privacy" class="hover:text-white transition-colors"
+          >Privacy Policy</a
+        >
+        <a href="/terms" class="hover:text-white transition-colors"
+          >Terms of Service</a
+        >
       </div>
     </div>
   </div>
