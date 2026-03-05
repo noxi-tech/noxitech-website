@@ -1,68 +1,121 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Icon } from 'astro-icon/components';
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<Layout title="Services & Process | Noxitech" description="How we build your freedom through custom automation and AI assets.">
+<Layout
+  title="Services & Process | Noxitech"
+  description="How we build your freedom through custom automation and AI assets."
+>
   <div class="pt-32 sm:pt-40">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      
       <!-- Header Section -->
       <div class="max-w-3xl mx-auto text-center mb-32">
-        <h2 class="text-base font-semibold leading-7 text-primary uppercase tracking-[0.2em]">The Proof</h2>
-        <h1 class="mt-2 text-5xl sm:text-7xl font-black tracking-tight text-white leading-tight">
-          How We Build <br> Your <span class="emphasis">Freedom.</span>
+        <h2
+          class="text-base font-semibold leading-7 text-primary uppercase tracking-[0.2em]"
+        >
+          The Proof
+        </h2>
+        <h1
+          class="mt-2 text-5xl sm:text-7xl font-black tracking-tight text-white leading-tight"
+        >
+          How We Build <br /> Your <span class="emphasis">Freedom.</span>
         </h1>
         <p class="mt-8 text-xl leading-8 font-medium text-secondary">
-          We don't just sell engines; we deliver time and operational security. This is exactly what you're buying.
+          We don't just sell engines; we deliver time and operational security.
+          This is exactly what you're buying.
         </p>
       </div>
 
-      <!-- Two-Part Deliverable Section -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-40">
-        <!-- Part A: The Engine -->
-        <div class="p-10 sm:p-16 rounded-[3rem] bg-white/5 border border-white/10 relative overflow-hidden group">
-          <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[80px] rounded-full group-hover:bg-primary/20 transition-colors duration-700"></div>
-          <div class="relative z-10">
-            <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 border border-primary/20">
-              <Icon name="lucide:cpu" class="w-8 h-8 text-primary" />
-            </div>
-            <h2 class="text-base font-bold text-primary uppercase tracking-widest mb-4">Part A</h2>
-            <h3 class="text-4xl font-black text-white mb-6">The Automation <span class="emphasis">Engine</span></h3>
-            <p class="text-lg text-secondary leading-relaxed mb-8">
-              The invisible logic layer that powers your entire enterprise. This is the custom-coded "brain" that monitors your events, makes decisions based on your business rules, and triggers actions across your stack 24/7.
-            </p>
-            <ul class="space-y-4">
-              {['Custom API Orchestration', 'Conditional Decision Trees', 'Error-Handling & Self-Correction', 'Multi-Platform Syncing'].map(item => (
-                <li class="flex items-center gap-3 text-sm font-bold text-white/70">
-                   <Icon name="lucide:check-circle-2" class="w-4 h-4 text-primary" />
-                   {item}
-                </li>
-              ))}
-            </ul>
+      <!-- The Deliverable Section -->
+      <div class="mb-40">
+        <div
+          class="p-10 sm:p-20 rounded-[3rem] sm:rounded-[4rem] bg-white/5 border border-white/10 relative overflow-hidden group"
+        >
+          <div
+            class="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 blur-[100px] rounded-full group-hover:bg-primary/20 transition-colors duration-700"
+          >
           </div>
-        </div>
+          <div
+            class="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/10 blur-[100px] rounded-full group-hover:bg-primary/20 transition-colors duration-700"
+          >
+          </div>
 
-        <!-- Part B: The Assets -->
-        <div class="p-10 sm:p-16 rounded-[3rem] bg-white/5 border border-white/10 relative overflow-hidden group">
-          <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/10 blur-[80px] rounded-full group-hover:bg-primary/20 transition-colors duration-700"></div>
-          <div class="relative z-10">
-            <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 border border-primary/20">
-              <Icon name="lucide:gem" class="w-8 h-8 text-primary" />
+          <div
+            class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+          >
+            <div>
+              <div
+                class="w-20 h-20 rounded-3xl bg-primary/10 flex items-center justify-center mb-8 border border-primary/20"
+              >
+                <Icon name="lucide:gem" class="w-10 h-10 text-primary" />
+              </div>
+              <h2
+                class="text-sm font-black text-primary uppercase tracking-[0.3em] mb-4"
+              >
+                The Deliverable
+              </h2>
+              <h3
+                class="text-4xl sm:text-5xl font-black text-white mb-6 leading-tight"
+              >
+                Your Custom <br />
+                <span class="emphasis">Autonomous Architecture</span>
+              </h3>
+              <p class="text-lg text-secondary leading-relaxed mb-6">
+                You aren't buying bloated software subscriptions or
+                unpredictable hourly consulting. You are investing in a
+                <strong class="text-white"
+                  >secure, custom-built infrastructure</strong
+                >.
+              </p>
+              <p class="text-lg text-secondary leading-relaxed mb-8">
+                We architect a bespoke system that connects your existing tools,
+                makes high-level decisions based on your rules, and handles your
+                operations 24/7. Our model is transparent: a one-time build fee
+                plus a predictable monthly hosting and maintenance fee (No
+                hidden costs). <strong class="text-white"
+                  >Your data is fully encrypted and remains entirely yours</strong
+                >.
+              </p>
             </div>
-            <h2 class="text-base font-bold text-primary uppercase tracking-widest mb-4">Part B</h2>
-            <h3 class="text-4xl font-black text-white mb-6">The Solution <span class="emphasis">Assets</span></h3>
-            <p class="text-lg text-secondary leading-relaxed mb-8">
-              The tangible, user-facing results. These are the tools and views your team actually interacts with. We don't just "fix things"—we build permanent operational assets that you own forever.
-            </p>
-            <ul class="space-y-4">
-              {['Live Performance Dashboards', 'Auto-Generated Document Folders', 'Smart Slack/Email Notifiers', 'Custom Training Databases'].map(item => (
-                <li class="flex items-center gap-3 text-sm font-bold text-white/70">
-                   <Icon name="lucide:check-circle-2" class="w-4 h-4 text-primary" />
-                   {item}
-                </li>
-              ))}
-            </ul>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {
+                [
+                  {
+                    title: "Decision Engine",
+                    desc: "Custom logic that processes data autonomously.",
+                    icon: "lucide:brain-circuit",
+                  },
+                  {
+                    title: "Zero Human Error",
+                    desc: "100% precision in every automated action.",
+                    icon: "lucide:shield-check",
+                  },
+                  {
+                    title: "Monthly ROI",
+                    desc: "Detailed monthly reports proving your time saved.",
+                    icon: "lucide:file-bar-chart-2",
+                  },
+                  {
+                    title: "Data Ownership",
+                    desc: "Your data is secure and remains entirely yours.",
+                    icon: "lucide:database",
+                  },
+                ].map((feature) => (
+                  <div class="p-6 rounded-3xl bg-black/20 border border-white/10 hover:border-primary/30 transition-all">
+                    <Icon
+                      name={feature.icon}
+                      class="w-6 h-6 text-primary mb-4"
+                    />
+                    <h4 class="text-white font-bold mb-2">{feature.title}</h4>
+                    <p class="text-sm text-secondary font-medium">
+                      {feature.desc}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
           </div>
         </div>
       </div>
@@ -70,73 +123,105 @@ import { Icon } from 'astro-icon/components';
       <!-- The 3-Step Implementation Path -->
       <div class="mb-40">
         <div class="text-center mb-20">
-          <h2 class="text-base font-semibold text-primary uppercase tracking-[0.2em] mb-4">The Journey</h2>
-          <h3 class="text-4xl sm:text-5xl font-black text-white">The Implementation <span class="emphasis">Path</span></h3>
+          <h2
+            class="text-base font-semibold text-primary uppercase tracking-[0.2em] mb-4"
+          >
+            The Journey
+          </h2>
+          <h3 class="text-4xl sm:text-5xl font-black text-white">
+            The Implementation <span class="emphasis">Path</span>
+          </h3>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
           <!-- Connector Lines for Desktop -->
-          <div class="hidden md:block absolute top-[2.75rem] left-[15%] right-[15%] h-px border-t-2 border-dashed border-white/10 -z-10"></div>
-          
-          {[
-            { 
-              step: "01", 
-              title: "Audit", 
-              icon: "lucide:search",
-              desc: "We dive deep into your manual chaos to identify the highest ROI bottlenecks. We map the flow and find your 'lost hours'."
-            },
-            { 
-              step: "02", 
-              title: "Build", 
-              icon: "lucide:hammer",
-              desc: "Our engineers deploy your custom engine. We connect your existing tools into a seamless, automated ecosystem."
-            },
-            { 
-              step: "03", 
-              title: "Monitor", 
-              icon: "lucide:activity",
-              desc: "We perform 24/7 health checks. If an API updates or a tool breaks, we solve it before you even notice."
-            }
-          ].map((item) => (
-            <div class="text-center group">
-              <div class="w-20 h-20 rounded-[2rem] bg-[#050505] border-2 border-white/10 flex items-center justify-center mx-auto mb-8 group-hover:border-primary group-hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-500">
-                <Icon name={item.icon} class="w-8 h-8 text-primary" />
+          <div
+            class="hidden md:block absolute top-11 left-[15%] right-[15%] h-px border-t-2 border-dashed border-white/10 -z-10"
+          >
+          </div>
+
+          {
+            [
+              {
+                step: "01",
+                title: "Audit",
+                icon: "lucide:search",
+                desc: "We dive deep into your manual chaos to identify the highest ROI bottlenecks. We map the flow and find your 'lost hours'.",
+              },
+              {
+                step: "02",
+                title: "Build",
+                icon: "lucide:hammer",
+                desc: "Our engineers deploy your custom engine. We connect your existing tools into a seamless, automated ecosystem.",
+              },
+              {
+                step: "03",
+                title: "Monitor",
+                icon: "lucide:activity",
+                desc: "We perform 24/7 health checks. If an API updates or a tool breaks, we solve it before you even notice.",
+              },
+            ].map((item) => (
+              <div class="text-center group">
+                <div class="w-20 h-20 rounded-4xl bg-[#050505] border-2 border-white/10 flex items-center justify-center mx-auto mb-8 group-hover:border-primary group-hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-500">
+                  <Icon name={item.icon} class="w-8 h-8 text-primary" />
+                </div>
+                <div class="text-[10px] font-black tracking-[0.4em] uppercase text-primary mb-4">
+                  Step {item.step}
+                </div>
+                <h4 class="text-2xl font-bold text-white mb-4">{item.title}</h4>
+                <p class="text-secondary text-sm leading-relaxed max-w-[18rem] mx-auto">
+                  {item.desc}
+                </p>
               </div>
-              <div class="text-[10px] font-black tracking-[0.4em] uppercase text-primary mb-4">Step {item.step}</div>
-              <h4 class="text-2xl font-bold text-white mb-4">{item.title}</h4>
-              <p class="text-secondary text-sm leading-relaxed max-w-[18rem] mx-auto">{item.desc}</p>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
 
       <!-- What You Get Monthly -->
-      <div class="bg-primary rounded-[4rem] p-12 sm:p-24 text-center relative overflow-hidden mb-40">
+      <div
+        class="bg-primary rounded-[4rem] p-12 sm:p-24 text-center relative overflow-hidden mb-40"
+      >
         <div class="absolute inset-0 bg-black/20"></div>
         <div class="relative z-10 max-w-4xl mx-auto">
-          <h2 class="text-base font-bold text-white uppercase tracking-[0.3em] mb-6">Continuous Value</h2>
-          <h3 class="text-4xl sm:text-6xl font-black text-white mb-16">What You Get <span class="underline decoration-white/20 underline-offset-8">Monthly</span></h3>
-          
+          <h2
+            class="text-base font-bold text-white uppercase tracking-[0.3em] mb-6"
+          >
+            Continuous Value
+          </h2>
+          <h3 class="text-4xl sm:text-6xl font-black text-white mb-16">
+            What You Get <span
+              class="underline decoration-white/20 underline-offset-8"
+              >Monthly</span
+            >
+          </h3>
+
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-left">
-            {[
-              { 
-                title: "API Uptime Monitoring", 
-                desc: "We ensure your connections never drop. Constant oversight of third-party platform health."
-              },
-              { 
-                title: "Performance Reports", 
-                desc: "Monthly breakdowns of hours saved, tasks completed, and asset performance metrics."
-              },
-              { 
-                title: "Security Patches", 
-                desc: "Continuous updates to logic and authentication to keep your business data vault-secure."
-              }
-            ].map(benefit => (
-              <div class="bg-white/10 backdrop-blur-md p-8 rounded-[2rem] border border-white/10 h-full">
-                <h4 class="text-xl font-bold text-white mb-4">{benefit.title}</h4>
-                <p class="text-sm text-white/80 leading-relaxed font-medium">{benefit.desc}</p>
-              </div>
-            ))}
+            {
+              [
+                {
+                  title: "API Uptime Monitoring",
+                  desc: "We ensure your connections never drop. Constant oversight of third-party platform health.",
+                },
+                {
+                  title: "Performance Reports",
+                  desc: "Monthly breakdowns of hours saved, tasks completed, and asset performance metrics.",
+                },
+                {
+                  title: "Security Patches",
+                  desc: "Continuous updates to logic and authentication to keep your business data vault-secure.",
+                },
+              ].map((benefit) => (
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-4xl border border-white/10 h-full">
+                  <h4 class="text-xl font-bold text-white mb-4">
+                    {benefit.title}
+                  </h4>
+                  <p class="text-sm text-white/80 leading-relaxed font-medium">
+                    {benefit.desc}
+                  </p>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -144,27 +229,49 @@ import { Icon } from 'astro-icon/components';
       <!-- FAQ Section -->
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-20">
-          <h2 class="text-base font-semibold text-primary uppercase tracking-[0.2em] mb-4">Questions</h2>
-          <h3 class="text-4xl font-black text-white">Address the <span class="emphasis">Friction</span></h3>
+          <h2
+            class="text-base font-semibold text-primary uppercase tracking-[0.2em] mb-4"
+          >
+            Questions
+          </h2>
+          <h3 class="text-4xl font-black text-white">
+            Address the <span class="emphasis">Friction</span>
+          </h3>
         </div>
 
         <div class="space-y-6">
-          {[
-            { q: "Do I need to buy new software?", a: "Rarely. Our goal is to connect the tools you already love. We act as the glue between your existing CRM, Email, and Cloud providers." },
-            { q: "Is my business data safe?", a: "Security is non-negotiable. We never 'own' your data; we build the pipes it travels through. Everything is encrypted and built on enterprise-grade infrastructure." },
-            { q: "What happens if an API breaks?", a: "That's why we monitor 24/7. When platforms like Google or Slack update their code, we handle the migration and fix the connections so you don't have to." },
-            { q: "Can't I just use Zapier?", a: "Zapier is great for simple tasks. We build 'Engines' for complex logic that Zapier can't handle—multi-step branching, error correction, and custom AI training." }
-          ].map(faq => (
-            <div class="p-8 rounded-[2rem] bg-white/5 border border-white/10 hover:border-white/20 transition-all group">
-              <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-3">
-                <span class="text-primary group-hover:scale-125 transition-transform duration-300">?</span>
-                {faq.q}
-              </h4>
-              <p class="text-secondary leading-relaxed font-medium pl-6 border-l border-primary/20">
-                {faq.a}
-              </p>
-            </div>
-          ))}
+          {
+            [
+              {
+                q: "Do I need to buy new software?",
+                a: "Rarely. Our goal is to connect the tools you already love. We act as the glue between your existing CRM, Email, and Cloud providers.",
+              },
+              {
+                q: "Is my business data safe?",
+                a: "Security is non-negotiable. We never 'own' your data; we build the pipes it travels through. Everything is encrypted and built on enterprise-grade infrastructure.",
+              },
+              {
+                q: "What happens if an API breaks?",
+                a: "That's why we monitor 24/7. When platforms like Google or Slack update their code, we handle the migration and fix the connections so you don't have to.",
+              },
+              {
+                q: "Can't I just use Zapier?",
+                a: "Zapier is great for simple tasks. We build 'Engines' for complex logic that Zapier can't handle—multi-step branching, error correction, and custom AI training.",
+              },
+            ].map((faq) => (
+              <div class="p-8 rounded-4xl bg-white/5 border border-white/10 hover:border-white/20 transition-all group">
+                <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-3">
+                  <span class="text-primary group-hover:scale-125 transition-transform duration-300">
+                    ?
+                  </span>
+                  {faq.q}
+                </h4>
+                <p class="text-secondary leading-relaxed font-medium pl-6 border-l border-primary/20">
+                  {faq.a}
+                </p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -172,9 +279,12 @@ import { Icon } from 'astro-icon/components';
 
   <!-- Final CTA -->
   <section class="py-32 text-center">
-    <h3 class="text-3xl sm:text-5xl font-black text-white mb-12">See how the engine <br> fits <span class="emphasis">your workflow.</span></h3>
-    <a href="/contact" class="btn-primary !px-12 !py-6 !text-xl shadow-2xl">
-      Book Your Audit
+    <h3 class="text-3xl sm:text-5xl font-black text-white mb-12">
+      See how the engine <br /> fits <span class="emphasis">your workflow.</span
+      >
+    </h3>
+    <a href="/contact" class="btn-primary px-12! py-6! text-xl! shadow-2xl">
+      Book a Free Audit
     </a>
   </section>
 </Layout>
