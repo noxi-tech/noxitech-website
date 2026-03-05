@@ -1,16 +1,19 @@
 ---
 // src/layouts/Layout.astro
-import { ClientRouter } from 'astro:transitions';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
 interface Props {
 	title?: string;
 	description?: string;
 }
 
-const { title = "Noxitech | Digital Solutions & Automation", description = "Bespoke digital solutions, automated workflows, and AI integrations for the modern enterprise." } = Astro.props;
+const {
+	title = "Noxitech | Digital Solutions & Automation",
+	description = "Bespoke digital solutions, automated workflows, and AI integrations for the modern enterprise.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -22,28 +25,40 @@ const { title = "Noxitech | Digital Solutions & Automation", description = "Besp
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
-		
+
 		<!-- Fonts used in Stella -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-		
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Serif:ital@0;1&display=swap"
+			rel="stylesheet"
+		/>
+
 		<ClientRouter />
 	</head>
-	<body class="bg-[#030303] text-white font-['Figtree',sans-serif] selection:bg-purple-500/30 selection:text-white">
+	<body
+		class="bg-slate-900 text-white font-['Figtree',sans-serif] selection:bg-purple-500/30 selection:text-white"
+	>
 		<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
 			<!-- Space/Galaxy Glows -->
-			<div class="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-purple-900/20 rounded-full blur-[120px]"></div>
-			<div class="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] bg-[#9933FF]/10 rounded-full blur-[120px]"></div>
-			<div class="absolute top-1/4 left-1/4 w-[40%] h-[40%] bg-purple-600/5 rounded-full blur-[100px]"></div>
+			<div
+				class="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-purple-900/20 rounded-full blur-[120px]"
+			>
+			</div>
+			<div
+				class="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] bg-[#9933FF]/10 rounded-full blur-[120px]"
+			>
+			</div>
+			<div
+				class="absolute top-1/4 left-1/4 w-[40%] h-[40%] bg-purple-600/5 rounded-full blur-[100px]"
+			>
+			</div>
 		</div>
-		
+
 		<Header />
 		<main>
 			<slot />
 		</main>
 		<Footer />
 	</body>
-</html>
-
 </html>
