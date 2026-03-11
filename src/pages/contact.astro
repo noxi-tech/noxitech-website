@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
+
+const user = "contact";
+const domain = "noxitech.cloud";
 ---
 
 <Layout
@@ -33,17 +36,6 @@ import { Icon } from "astro-icon/components";
               <div
                 class="w-14 h-14 rounded-[1.25rem] bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
               >
-                <Icon name="lucide:mail" class="w-6 h-6 text-primary" />
-              </div>
-              <div>
-                <div class="text-white font-bold text-lg">Email Us</div>
-                <div class="text-secondary font-medium">hello@noxitech.com</div>
-              </div>
-            </div>
-            <div class="flex items-center gap-6 group">
-              <div
-                class="w-14 h-14 rounded-[1.25rem] bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
-              >
                 <Icon name="lucide:map-pin" class="w-6 h-6 text-primary" />
               </div>
               <div>
@@ -57,7 +49,7 @@ import { Icon } from "astro-icon/components";
         <div
           class="bg-white/5 p-8 sm:p-12 rounded-[3rem] border border-white/10 shadow-2xl backdrop-blur-md"
         >
-          <form class="space-y-8">
+          <form id="contact-form" class="space-y-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div>
                 <label
@@ -68,10 +60,21 @@ import { Icon } from "astro-icon/components";
                 <input
                   type="text"
                   id="first-name"
+                  name="firstName"
+                  required
                   class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all font-medium placeholder:text-white/30"
                   placeholder="Jane"
+                  autocomplete="given-name"
                 />
               </div>
+              <!-- Honeypot Field (Anti-Spam) -->
+              <input
+                type="text"
+                name="bot-field"
+                class="hidden"
+                tabindex="-1"
+                autocomplete="off"
+              />
               <div>
                 <label
                   for="last-name"
@@ -81,8 +84,11 @@ import { Icon } from "astro-icon/components";
                 <input
                   type="text"
                   id="last-name"
+                  name="lastName"
+                  required
                   class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all font-medium placeholder:text-white/30"
                   placeholder="Doe"
+                  autocomplete="family-name"
                 />
               </div>
             </div>
@@ -93,8 +99,11 @@ import { Icon } from "astro-icon/components";
               <input
                 type="email"
                 id="email"
+                name="email"
+                required
                 class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all font-medium placeholder:text-white/30"
                 placeholder="jane@company.com"
+                autocomplete="email"
               />
             </div>
             <div>
@@ -105,14 +114,148 @@ import { Icon } from "astro-icon/components";
               >
               <textarea
                 id="message"
+                name="message"
                 rows="4"
+                required
                 class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all font-medium placeholder:text-white/30"
                 placeholder="How can we help?"></textarea>
             </div>
-            <button type="submit" class="btn-primary w-full py-5! text-lg!">
-              Book My Free Audit
+            <button
+              type="submit"
+              id="submit-btn"
+              class="btn-primary w-full py-5! text-lg! cursor-pointer flex items-center justify-center gap-2"
+            >
+              <span>Book My Free Audit</span>
+              <Icon
+                name="lucide:loader-2"
+                class="w-5 h-5 animate-spin hidden"
+                id="submit-loader"
+              />
             </button>
+            <div
+              id="form-feedback"
+              class="hidden p-4 rounded-2xl text-center font-medium transition-all duration-300 transform scale-95 opacity-0"
+            >
+            </div>
           </form>
+          <style>
+            #form-feedback.show {
+              display: block;
+              transform: scale(1);
+              opacity: 1;
+            }
+          </style>
+          <p class="text-center text-secondary mt-8">
+            Having trouble? <a
+              id="mailto-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary cursor-pointer">contact us</a
+            >
+          </p>
+          <script define:vars={{ user, domain }}>
+            const form = document.getElementById("contact-form");
+            const submitBtn = document.getElementById("submit-btn");
+            const submitLoader = document.getElementById("submit-loader");
+            const btnText = submitBtn.querySelector("span");
+            const feedback = document.getElementById("form-feedback");
+            const mailtoBtn = document.getElementById("mailto-btn");
+
+            // Handle mailto fallback
+            mailtoBtn.addEventListener("click", () => {
+              const fullEmail = `${user}@${domain}`;
+              window.location.href = `mailto:${fullEmail}`;
+            });
+
+            // Handle form submission
+            form.addEventListener("submit", async (e) => {
+              e.preventDefault();
+
+              // Prevent rapid multi-submissions (10 minute cooldown)
+              const lastSubmission = localStorage.getItem("last_contact_submission");
+              const now = Date.now();
+              const cooldown = 10 * 60 * 1000; // 10 minutes in ms
+
+              if (lastSubmission && now - parseInt(lastSubmission) < cooldown) {
+                const minutesLeft = Math.ceil((cooldown - (now - parseInt(lastSubmission))) / 60000);
+                feedback.textContent = `Please wait ${minutesLeft} minute${minutesLeft > 1 ? 's' : ''} before sending another message.`;
+                feedback.classList.add("bg-red-500/20", "text-red-400", "show");
+                feedback.classList.remove("hidden");
+                return;
+              }
+
+              // UI states
+              submitBtn.disabled = true;
+              submitBtn.classList.add("opacity-70", "cursor-not-allowed");
+              submitLoader.classList.remove("hidden");
+              btnText.textContent = "Sending...";
+
+              feedback.classList.remove(
+                "show",
+                "bg-green-500/20",
+                "text-green-400",
+                "bg-red-500/20",
+                "text-red-400",
+              );
+
+              const formData = new FormData(form);
+              const data = Object.fromEntries(formData.entries());
+
+              // Client-side Honeypot check
+              if (data["bot-field"]) {
+                console.warn("Spam detected");
+                feedback.textContent =
+                  "Message sent successfully! We'll be in touch soon."; // Fake success
+                feedback.classList.add(
+                  "bg-green-500/20",
+                  "text-green-400",
+                  "show",
+                );
+                feedback.classList.remove("hidden");
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.classList.remove("opacity-70", "cursor-not-allowed");
+                submitLoader.classList.add("hidden");
+                btnText.textContent = "Book My Free Audit";
+                return;
+              }
+
+              try {
+                const response = await fetch("/.netlify/functions/contact", {
+                  method: "POST",
+                  body: JSON.stringify(data),
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                });
+
+                if (response.ok) {
+                  feedback.textContent =
+                    "Message sent successfully! We'll be in touch soon.";
+                  feedback.classList.add(
+                    "bg-green-500/20",
+                    "text-green-400",
+                    "show",
+                  );
+                  feedback.classList.remove("hidden");
+                  form.reset();
+                  localStorage.setItem("last_contact_submission", Date.now().toString());
+                } else {
+                  throw new Error("Failed to send message.");
+                }
+              } catch (error) {
+                feedback.textContent =
+                  "Oops! Something went wrong. Please try again or use the email link below.";
+                feedback.classList.add("bg-red-500/20", "text-red-400", "show");
+                feedback.classList.remove("hidden");
+              } finally {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove("opacity-70", "cursor-not-allowed");
+                submitLoader.classList.add("hidden");
+                btnText.textContent = "Book My Free Audit";
+              }
+            });
+          </script>
         </div>
       </div>
     </div>
