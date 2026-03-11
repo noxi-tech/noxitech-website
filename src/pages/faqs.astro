@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
+
+const user = "contact";
+const domain = "noxitech.cloud";
 ---
 
 <Layout
@@ -103,11 +106,22 @@ import { Icon } from "astro-icon/components";
                         Reach out to our team directly. We're happy to discuss
                         your specific infrastructure needs.
                     </p>
-                    <a href="/contact" class="btn-primary px-10! py-4! text-lg!"
+                    <a
+                        id="contact-btn"
+                        class="btn-primary px-10! py-4! text-lg! cursor-pointer"
                         >Contact Support</a
                     >
                 </div>
             </div>
         </div>
     </div>
+    <script define:vars={{ user, domain }}>
+        const btn = document.getElementById("contact-btn");
+
+        btn.addEventListener("click", () => {
+            // This assembles the email only when the user interacts
+            const fullEmail = `${user}@${domain}`;
+            window.location.href = `mailto:${fullEmail}`;
+        });
+    </script>
 </Layout>
