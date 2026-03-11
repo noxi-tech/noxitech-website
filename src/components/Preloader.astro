@@ -1,0 +1,127 @@
+---
+// src/components/Preloader.astro
+import { Icon } from "astro-icon/components";
+---
+
+<div id="preloader" class="fixed inset-0 z-100 flex items-center justify-center bg-slate-900 pointer-events-auto transition-opacity duration-700">
+    <div class="relative flex flex-col items-center">
+        <!-- Animated Logo Container -->
+        <div class="relative w-24 h-24 mb-6">
+            <div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full animate-pulse"></div>
+            <div class="relative flex items-center justify-center w-full h-full bg-slate-950 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                <img src="/assets/light_logo.svg" alt="Noxitech Logo" class="w-12 h-12 relative z-10 animate-bounce-slow" />
+                <!-- Glint effect -->
+                <div class="absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg] animate-glint"></div>
+            </div>
+        </div>
+        
+        <!-- Loading Text -->
+        <div class="flex flex-col items-center">
+            <span class="text-white font-black uppercase tracking-[0.3em] text-xs mb-2">Noxitech</span>
+            <div class="w-32 h-[2px] bg-white/5 rounded-full overflow-hidden">
+                <div id="preloader-bar" class="w-0 h-full bg-primary transition-all duration-300 ease-out"></div>
+            </div>
+            <span id="load-status" class="text-white/40 text-[10px] uppercase font-bold tracking-widest mt-3">Initialising...</span>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes bounce-slow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    .animate-bounce-slow {
+        animation: bounce-slow 2s ease-in-out infinite;
+    }
+    @keyframes glint {
+        0% { left: -100%; }
+        100% { left: 200%; }
+    }
+    .animate-glint {
+        animation: glint 3s ease-in-out infinite;
+    }
+    .preloader-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+</style>
+
+<script>
+    function initPreloader() {
+        const preloader = document.getElementById('preloader');
+        const bar = document.getElementById('preloader-bar');
+        const statusText = document.getElementById('load-status');
+        
+        if (!preloader || !bar || !statusText) return;
+
+        // Start progress
+        setTimeout(() => {
+            bar.style.width = '30%';
+            statusText.textContent = 'Loading Assets...';
+        }, 100);
+
+        // Check for fonts
+        if ('fonts' in document) {
+            document.fonts.ready.then(() => {
+                bar.style.width = '70%';
+                statusText.textContent = 'Syncing Nodes...';
+                
+                // Final check for full document load
+                if (document.readyState === 'complete') {
+                    finishLoading();
+                } else {
+                    window.addEventListener('load', finishLoading);
+                }
+            });
+        } else {
+            window.addEventListener('load', finishLoading);
+        }
+
+        function finishLoading() {
+            if (bar) bar.style.width = '100%';
+            if (statusText) statusText.textContent = 'System Ready';
+            
+            setTimeout(() => {
+                if (preloader) preloader.classList.add('preloader-hidden');
+                // Use a small delay before adding .loaded to ensure smooth transition
+                document.body.classList.add('loaded');
+                document.body.style.overflow = '';
+                
+                // Trigger an event for other components to start their animations
+                window.dispatchEvent(new CustomEvent('preloader-finished'));
+            }, 500);
+        }
+    }
+
+    function skipPreloader() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) preloader.style.display = 'none';
+        document.body.classList.add('loaded');
+        document.body.style.overflow = '';
+    }
+
+    // Run on every page load (Astro transitions)
+    document.addEventListener('astro:page-load', () => {
+        // Only show full preloader on the VERY first visit per session
+        if (!sessionStorage.getItem('visited')) {
+            initPreloader();
+            sessionStorage.setItem('visited', 'true');
+        } else {
+            skipPreloader();
+        }
+    });
+
+    // Handle initial non-Astro load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+             if (!sessionStorage.getItem('visited')) {
+                 document.body.style.overflow = 'hidden';
+             }
+        });
+    } else {
+         if (!sessionStorage.getItem('visited')) {
+             document.body.style.overflow = 'hidden';
+         }
+    }
+</script>

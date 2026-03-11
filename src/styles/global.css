@@ -67,9 +67,38 @@
             transform: translateY(0);
         }
     }
+
+    @keyframes reveal-up {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes reveal-blur {
+        from { opacity: 0; filter: blur(20px); transform: scale(0.95); }
+        to { opacity: 1; filter: blur(0); transform: scale(1); }
+    }
 }
 
 @layer utilities {
+    /* Base reveal states - invisible until .loaded is added to body */
+    .reveal-up, .reveal-blur { 
+        opacity: 0; 
+    }
+
+    .loaded .reveal-up { 
+        animation: reveal-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+    }
+    
+    .loaded .reveal-blur { 
+        animation: reveal-blur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+    }
+    
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
+
     .btn-primary {
         @apply relative inline-flex items-center justify-center px-8 py-3.5 font-semibold text-white transition-all duration-300 rounded-full bg-primary shadow-lg shadow-purple-500/40;
 
@@ -110,10 +139,12 @@
     }
 
     .glass {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 15, 20, 0.7);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        transform: translateZ(0);
     }
 
     .emphasis {

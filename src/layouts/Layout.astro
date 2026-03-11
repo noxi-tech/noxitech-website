@@ -3,6 +3,7 @@
 import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Preloader from "../components/Preloader.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -37,6 +38,7 @@ const {
 	<body
 		class="bg-slate-900 text-white font-['Figtree',sans-serif] selection:bg-purple-500/30 selection:text-white"
 	>
+		<Preloader />
 		<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
 			<!-- Space/Galaxy Glows -->
 			<div
