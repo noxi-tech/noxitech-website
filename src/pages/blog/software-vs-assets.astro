@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+
+const title = "Stop Renting Software. Start Building Assets.";
+---
+
+<Layout title={`${title} | Noxitech`} description="Why monthly SaaS subscriptions will never perfectly map to your unique business logic—and what to do about it.">
+    <div class="pt-32 pb-24 sm:pt-40 sm:pb-32 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/10 blur-[120px] rounded-full opacity-30"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative">
+            <nav class="mb-12">
+                <a href="/blog" class="text-secondary hover:text-primary transition-colors flex items-center gap-2 font-medium">
+                    <Icon name="lucide:arrow-left" class="w-4 h-4" />
+                    Back to Blog
+                </a>
+            </nav>
+
+            <header class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="px-4 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+                        Strategy
+                    </span>
+                    <span class="text-secondary text-sm font-medium">September 28, 2026</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                    <span class="text-secondary text-sm font-medium">6 min read</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight mb-8">
+                    Stop <span class="emphasis">Renting</span> Software. Start Building Assets.
+                </h1>
+                <p class="text-xl text-secondary leading-relaxed font-medium italic border-l-4 border-primary pl-6">
+                    "Why monthly SaaS subscriptions will never perfectly map to your unique business logic—and what to do about it."
+                </p>
+            </header>
+
+            <article class="prose prose-invert prose-lg max-w-none text-secondary leading-relaxed space-y-8 font-medium">
+                <p>
+                    There is a dangerous trend in modern business: the "SaaS Overdose." We've been told that for every problem, there's a monthly subscription. Need project management? Click pay. Need billing? Click pay. Need data enrichment? Click pay.
+                </p>
+                <p>
+                    Before you know it, you're spending $5k/month on a stack that you don't actually own and that doesn't actually fit your workflow. You are renting your infrastructure, and that's a liability.
+                </p>
+
+                <h2 class="text-2xl font-bold text-white mt-12 mb-6">The Custom Advantage</h2>
+                <p>
+                    Off-the-shelf software is designed for the "average" user. But your business isn't average. Your competitive advantage lies in the unique way you handle processes, leads, or data. When you force your unique processes into a generic tool, you shave off the edges that make you profitable.
+                </p>
+
+                <div class="bg-primary/5 border border-primary/20 rounded-[2.5rem] p-10 my-12">
+                    <h3 class="text-2xl font-bold text-white mb-6">Software vs. Asset</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <Icon name="lucide:x-circle" class="w-6 h-6 text-red-400 shrink-0 mt-1" />
+                            <div>
+                                <span class="text-white font-bold">Renting:</span> Paying $400/month for a "Lead Management" tool that does 80% of what you need, but forces you to do the other 20% manually in Excel.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <Icon name="lucide:check-circle" class="w-6 h-6 text-primary shrink-0 mt-1" />
+                            <div>
+                                <span class="text-white font-bold">Ownership:</span> A one-time investment in a custom-scripted automation that handles 100% of your workflow, lives on your own secure cloud, and has ZERO monthly per-user fees.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <h2 class="text-2xl font-bold text-white mt-12 mb-6">The ROI of Bespoke Automation</h2>
+                <p>
+                    By building your own "Automation Assets," you transform a recurring expense into a permanent capital improvement. Just like owning your office building is usually better for the balance sheet than renting, owning your logic is better for your operational long-term.
+                </p>
+                <p>
+                    At Noxitech, we don't just "set up tools." We build the engines that you own forever.
+                </p>
+
+                <div class="pt-12 border-t border-white/10 mt-16 text-center">
+                    <h3 class="text-2xl font-bold text-white mb-6 italic">Build your business on firm ground</h3>
+                    <a href="/contact" class="btn-primary">
+                        Discuss Bespoke Solutions
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</Layout>

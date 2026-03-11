@@ -1,0 +1,95 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+
+const title = "Automating High-Logic Lead Enrichment";
+---
+
+<Layout title={`${title} | Noxitech`} description="How to instantly analyze and route premium B2B leads using deterministic workflows and AI integration.">
+    <div class="pt-32 pb-24 sm:pt-40 sm:pb-32 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/10 blur-[120px] rounded-full opacity-30"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative">
+            <nav class="mb-12">
+                <a href="/blog" class="text-secondary hover:text-primary transition-colors flex items-center gap-2 font-medium">
+                    <Icon name="lucide:arrow-left" class="w-4 h-4" />
+                    Back to Blog
+                </a>
+            </nav>
+
+            <header class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="px-4 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+                        Growth
+                    </span>
+                    <span class="text-secondary text-sm font-medium">September 15, 2026</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                    <span class="text-secondary text-sm font-medium">5 min read</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight mb-8">
+                    Automating <span class="emphasis">High-Logic</span> Lead Enrichment
+                </h1>
+                <p class="text-xl text-secondary leading-relaxed font-medium italic border-l-4 border-primary pl-6">
+                    "How to instantly analyze and route premium B2B leads using deterministic workflows and AI integration."
+                </p>
+            </header>
+
+            <article class="prose prose-invert prose-lg max-w-none text-secondary leading-relaxed space-y-8 font-medium">
+                <p>
+                    A name and an email address aren't enough for a high-performing sales team. To win in B2B today, your reps need to know who they are talking to <em>before</em> they pick up the phone. They need to know company size, current tech stack, recent funding rounds, and social presence.
+                </p>
+                <p>
+                    Doing this manually for every lead is a recipe for burnout. Automating it incorrectly is a recipe for bad data.
+                </p>
+
+                <h2 class="text-2xl font-bold text-white mt-12 mb-6">The "Intelligent" Enrichment Pipeline</h2>
+                <p>
+                    At Noxitech, we build enrichment pipelines that don't just "pull data"—they analyze it. Here's a typical flow:
+                </p>
+                <ol class="list-decimal pl-6 space-y-4">
+                    <li>
+                        <strong class="text-white">Submission:</strong> A lead fills out your form.
+                    </li>
+                    <li>
+                        <strong class="text-white">Lookup:</strong> An API call to Apollo or Clearbit retrieves company metadata.
+                    </li>
+                    <li>
+                        <strong class="text-white">AI Analysis:</strong> An LLM (like GPT-4o) reads the company's "About" page via a web scraper to categorize them into your internal segments.
+                    </li>
+                    <li>
+                        <strong class="text-white">Scoring:</strong> A deterministic script calculates a "Lead Score" based on your specific criteria.
+                    </li>
+                    <li>
+                        <strong class="text-white">Routing:</strong> If the score is >80, it fires a high-priority browser notification to the head of sales.
+                    </li>
+                </ol>
+
+                <div class="my-12 p-8 rounded-[3rem] bg-linear-to-br from-primary/10 to-transparent border border-white/5 flex flex-col md:flex-row items-center gap-8">
+                    <div class="shrink-0 w-24 h-24 rounded-3xl bg-slate-900 flex items-center justify-center border border-white/10">
+                        <Icon name="lucide:zap" class="w-12 h-12 text-primary animate-pulse" />
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-xl mb-2">Real-Time Advantage</h4>
+                        <p class="mb-0 text-sm">
+                            This entire process happens in less than 4 seconds. By the time the customer clicks "Submit," your sales rep already has a full dossier on their business.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold text-white mt-12 mb-6">Efficiency over Effort</h2>
+                <p>
+                    Automation like this doesn't just save time—it increases your winning percentage. It allows you to ignore the noise and focus 100% of your human energy on the leads that actually matter.
+                </p>
+
+                <div class="pt-12 border-t border-white/10 mt-16 text-center">
+                    <h3 class="text-2xl font-bold text-white mb-6 italic">Want this engine in your business?</h3>
+                    <a href="/contact" class="btn-primary">
+                        Automate Your Lead Pipeline
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</Layout>

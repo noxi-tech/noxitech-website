@@ -1,0 +1,82 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+
+const title = "Calculating True ROI on Scripted Solutions";
+---
+
+<Layout title={`${title} | Noxitech`} description="Learn to calculate the exact breakpoint where a bespoke automation script becomes infinitely cheaper than human labor.">
+    <div class="pt-32 pb-24 sm:pt-40 sm:pb-32 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/10 blur-[120px] rounded-full opacity-30"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative">
+            <nav class="mb-12">
+                <a href="/blog" class="text-secondary hover:text-primary transition-colors flex items-center gap-2 font-medium">
+                    <Icon name="lucide:arrow-left" class="w-4 h-4" />
+                    Back to Blog
+                </a>
+            </nav>
+
+            <header class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="px-4 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+                        Finance
+                    </span>
+                    <span class="text-secondary text-sm font-medium">August 02, 2026</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                    <span class="text-secondary text-sm font-medium">5 min read</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight mb-8">
+                    Calculating True <span class="emphasis">ROI</span> on Scripted Solutions
+                </h1>
+                <p class="text-xl text-secondary leading-relaxed font-medium italic border-l-4 border-primary pl-6">
+                    "Learn to calculate the exact breakpoint where a bespoke automation script becomes infinitely cheaper than human labor."
+                </p>
+            </header>
+
+            <article class="prose prose-invert prose-lg max-w-none text-secondary leading-relaxed space-y-8 font-medium">
+                <p>
+                    Automation is often viewed as a cost. In reality, it is a high-yield investment with a clearly calculable "payback period." At Noxitech, we don't build scripts just because they are "cool"—we build them because the math demands it.
+                </p>
+
+                <h2 class="text-2xl font-bold text-white mt-12 mb-6">The Formula for Efficiency</h2>
+                <p>
+                    Calculating the ROI of an automation project is simpler than most CFOs realize. You need three numbers:
+                </p>
+                <ol class="list-decimal pl-6 space-y-4">
+                    <li><strong class="text-white">Annual Manual Cost (AMC):</strong> (Hours spent per week × 52 weeks) × (Employee hourly rate × 1.2 for overhead).</li>
+                    <li><strong class="text-white">The Build Cost:</strong> The one-time fee to design, code, and deploy the solution.</li>
+                    <li><strong class="text-white">The Opportunity Cost:</strong> The revenue lost because your team was doing data entry instead of selling or building.</li>
+                </ol>
+
+                <div class="bg-white/5 border border-white/10 rounded-4xl p-8 my-12 relative overflow-hidden">
+                    <div class="absolute -top-12 -right-12 w-48 h-48 bg-primary/10 blur-3xl rounded-full"></div>
+                    <h3 class="text-xl font-bold text-white mb-4">Case Study: The Lead Handler</h3>
+                    <p class="mb-4">
+                        A client was spending 5 hours a day (across 10 reps) manually routing leads.
+                    </p>
+                    <ul class="text-sm space-y-2 mb-0">
+                        <li><strong>Manual Cost:</strong> $65,000 / year</li>
+                        <li><strong>Automation Cost:</strong> $8,500 (one-time)</li>
+                        <li><strong>Break-even:</strong> Month 1.5</li>
+                        <li><strong>3-Year Return:</strong> 2,194%</li>
+                    </ul>
+                </div>
+
+                <h2 class="text-2xl font-bold text-white mt-12 mb-6">Long-Term Wealth Building</h2>
+                <p>
+                    Unlike an employee whose cost increases every year with inflation and raises, a script is a "set it and forget it" asset. Its "salary" is zero. By replacing manual labor with scripted assets, you are essentially buying back time at a 90% discount.
+                </p>
+
+                <div class="pt-12 border-t border-white/10 mt-16 text-center">
+                    <h3 class="text-2xl font-bold text-white mb-6 italic">Run the numbers on your business</h3>
+                    <a href="/contact" class="btn-primary">
+                        Get Your ROI Assessment
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</Layout>

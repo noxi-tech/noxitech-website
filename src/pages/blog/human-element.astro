@@ -1,0 +1,90 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+
+const title = "The Human Element in Automation";
+---
+
+<Layout title={`${title} | Noxitech`} description="Automation shouldn't replace your best people; it should liberate them from drudgery so they can actually think.">
+    <div class="pt-32 pb-24 sm:pt-40 sm:pb-32 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/10 blur-[120px] rounded-full opacity-30"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative">
+            <nav class="mb-12">
+                <a href="/blog" class="text-secondary hover:text-primary transition-colors flex items-center gap-2 font-medium">
+                    <Icon name="lucide:arrow-left" class="w-4 h-4" />
+                    Back to Blog
+                </a>
+            </nav>
+
+            <header class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="px-4 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+                        Philosophy
+                    </span>
+                    <span class="text-secondary text-sm font-medium">August 18, 2026</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                    <span class="text-secondary text-sm font-medium">7 min read</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight mb-8">
+                    The <span class="emphasis">Human Element</span> in Automation
+                </h1>
+                <p class="text-xl text-secondary leading-relaxed font-medium italic border-l-4 border-primary pl-6">
+                    "Automation shouldn't replace your best people; it should liberate them from drudgery so they can actually think."
+                </p>
+            </header>
+
+            <article class="prose prose-invert prose-lg max-w-none text-secondary leading-relaxed space-y-8 font-medium">
+                <p>
+                    There is a common fear that automation is designed to delete jobs. But at Noxitech, we believe high-quality automation is actually deeply humanizing. 
+                </p>
+
+                <h2 class="text-2xl font-bold text-white mt-12 mb-6">The "Cyborg" Workflow</h2>
+                <p>
+                    The most successful businesses don't automate <em>everything</em>. Instead, they automate the "boring" so their people can focus on the "impossible." 
+                </p>
+                <p>
+                    A machine is perfect at moving data from a form to a CRM. A human is perfect at understanding the nuance in a client's voice during a discovery call. When you automate the data entry, you give that human more time to listen, think, and solve problems.
+                </p>
+
+                <div class="bg-primary/5 border border-primary/20 rounded-4xl p-10 my-12">
+                    <h3 class="text-xl font-bold text-white mb-6">Augmentation, not Replacement</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-primary font-bold mb-2">The Machine Handles:</h4>
+                            <ul class="text-sm space-y-2 opacity-80 list-disc pl-4">
+                                <li>Repetitive data entry</li>
+                                <li>Instant notifications</li>
+                                <li>Complex calculations</li>
+                                <li>24/7 monitoring</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-2">The Human Handles:</h4>
+                            <ul class="text-sm space-y-2 opacity-80 list-disc pl-4">
+                                <li>Strategic decision-making</li>
+                                <li>Empathy and relationship building</li>
+                                <li>Creative problem solving</li>
+                                <li>Complex negotiation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold text-white mt-12 mb-6">Unleashing Potential</h2>
+                <p>
+                    When an employee is no longer burdened by the checklist of digital drudgery, their value to the company skyrockets. Instead of being an expensive data-entry clerk, they become a strategic asset. Automation is the bridge that turns a workforce into a brain-trust.
+                </p>
+
+                <div class="pt-12 border-t border-white/10 mt-16 text-center">
+                    <h3 class="text-2xl font-bold text-white mb-6 italic">Empower your team's best work</h3>
+                    <a href="/contact" class="btn-primary">
+                        Design Your Human-Centric Stack
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</Layout>
