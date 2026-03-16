@@ -1,0 +1,75 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  id: string;
+  type: "loading" | "error" | "success";
+  title: string;
+  description: string;
+  icon?: string;
+  hidden?: boolean;
+  class?: string;
+}
+
+const { 
+  id, 
+  type, 
+  title, 
+  description, 
+  icon, 
+  hidden = true, 
+  class: className 
+} = Astro.props;
+
+const typeStyles = {
+  loading: "",
+  error: "bg-rose-500/10 border-rose-500/20 shadow-[0_0_30px_rgba(244,63,94,0.2)] text-rose-500",
+  success: "bg-emerald-500/10 border-emerald-500/20 shadow-[0_0_30px_rgba(16,185,129,0.2)] text-emerald-500",
+};
+
+const defaultIcons = {
+  loading: "lucide:shield-check",
+  error: "lucide:slash",
+  success: "lucide:check",
+};
+
+const currentIcon = icon || defaultIcons[type];
+---
+
+<div 
+  id={id} 
+  class:list={[
+    "flex-col items-center text-center transition-all duration-500",
+    hidden ? "hidden" : "flex",
+    className
+  ]}
+>
+  {type === "loading" ? (
+    <div class="relative w-32 h-32 mb-10">
+      <div class="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
+      <div class="absolute inset-0 border-4 border-t-primary rounded-full animate-spin"></div>
+      <div class="absolute inset-4 border-2 border-primary/10 rounded-full"></div>
+      <div class="absolute inset-4 border-2 border-b-primary/40 rounded-full animate-spin-reverse"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <Icon name={currentIcon} class="w-10 h-10 text-primary animate-pulse" />
+      </div>
+    </div>
+  ) : (
+    <div class:list={[
+      "w-24 h-24 border rounded-3xl flex items-center justify-center mb-8",
+      typeStyles[type]
+    ]}>
+      <Icon name={currentIcon} class="w-12 h-12" />
+    </div>
+  )}
+
+  <h1 class="text-3xl sm:text-4xl font-black text-white mb-4">{title}</h1>
+  <p class:list={[
+    "text-secondary font-medium mb-12 text-balance",
+    type === "error" ? "error-message-text" : ""
+  ]} id={type === "error" ? "error-message" : undefined}>
+    {description}
+  </p>
+  
+  <slot />
+</div>

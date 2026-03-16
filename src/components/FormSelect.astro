@@ -1,0 +1,145 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  label: string;
+  id: string;
+  name: string;
+  options: Option[];
+  placeholder?: string;
+  required?: boolean;
+  class?: string;
+}
+
+const { 
+  label, 
+  id, 
+  name, 
+  options, 
+  placeholder = "Select an option", 
+  required = false, 
+  class: className 
+} = Astro.props;
+---
+
+<div class={`relative group custom-select-container ${className}`} data-id={id}>
+  <label class="block text-sm font-bold text-white mb-3">{label}</label>
+  <div class="relative">
+    <!-- Hidden real select for form submission -->
+    <select id={id} name={name} required={required} class="sr-only custom-select-real">
+      <option value="" disabled selected>{placeholder}</option>
+      {options.map(option => (
+        <option value={option.value}>{option.label}</option>
+      ))}
+    </select>
+
+    <!-- Custom Trigger Button -->
+    <button
+      type="button"
+      class="custom-select-trigger w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-left text-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all font-medium flex items-center justify-between hover:bg-white/10 cursor-pointer"
+    >
+      <span class="custom-select-value">{placeholder}</span>
+      <Icon
+        name="lucide:chevron-down"
+        class="custom-select-chevron w-5 h-5 text-white/30 group-focus-within:text-primary transition-transform duration-300"
+      />
+    </button>
+
+    <!-- Custom Dropdown Menu -->
+    <div
+      class="custom-select-options absolute z-50 mt-2 w-full bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hidden opacity-0 translate-y-2 transition-all duration-300"
+    >
+      <ul class="py-2">
+        {options.map(option => (
+          <li
+            data-value={option.value}
+            class="custom-option-item px-5 py-3 hover:bg-primary/20 cursor-pointer transition-colors text-white/70 hover:text-white font-medium"
+          >
+            {option.label}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  const initCustomSelects = () => {
+    const containers = document.querySelectorAll('.custom-select-container');
+    
+    containers.forEach(container => {
+      // Avoid re-initialization
+      if (container.hasAttribute('data-initialized')) return;
+      container.setAttribute('data-initialized', 'true');
+
+      const trigger = container.querySelector('.custom-select-trigger') as HTMLButtonElement;
+      const optionsMenu = container.querySelector('.custom-select-options') as HTMLElement;
+      const valueText = container.querySelector('.custom-select-value') as HTMLElement;
+      const realSelect = container.querySelector('.custom-select-real') as HTMLSelectElement;
+      const chevron = container.querySelector('.custom-select-chevron') as HTMLElement;
+      const optionItems = container.querySelectorAll('.custom-option-item');
+
+      if (!trigger || !optionsMenu || !valueText || !realSelect) return;
+
+      const toggleSelect = () => {
+        const isHidden = optionsMenu.classList.contains('hidden');
+        if (isHidden) {
+          optionsMenu.classList.remove('hidden');
+          setTimeout(() => {
+            optionsMenu.classList.remove('opacity-0', 'translate-y-2');
+            optionsMenu.classList.add('opacity-100', 'translate-y-0');
+          }, 10);
+          if (chevron) chevron.classList.add('rotate-180');
+          trigger.classList.add('ring-2', 'ring-purple-500/20', 'bg-white/10');
+        } else {
+          optionsMenu.classList.add('opacity-0', 'translate-y-2');
+          optionsMenu.classList.remove('opacity-100', 'translate-y-0');
+          if (chevron) chevron.classList.remove('rotate-180');
+          trigger.classList.remove('ring-2', 'ring-purple-500/20', 'bg-white/10');
+          setTimeout(() => {
+            optionsMenu.classList.add('hidden');
+          }, 300);
+        }
+      };
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleSelect();
+      });
+
+      optionItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const value = item.getAttribute('data-value');
+          if (value) {
+            valueText.textContent = item.textContent?.trim() || '';
+            valueText.classList.remove('text-white/30');
+            valueText.classList.add('text-white');
+            realSelect.value = value;
+            
+            // Trigger change event for dynamic behaviors
+            realSelect.dispatchEvent(new Event('change', { bubbles: true }));
+            
+            toggleSelect();
+          }
+        });
+      });
+
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!optionsMenu.classList.contains('hidden') && !container.contains(e.target as Node)) {
+          toggleSelect();
+        }
+      });
+    });
+  };
+
+  // Initialize on page load and swaps
+  initCustomSelects();
+  document.addEventListener('astro:after-swap', initCustomSelects);
+  document.addEventListener('astro:page-load', initCustomSelects);
+</script>
