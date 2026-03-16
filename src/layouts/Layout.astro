@@ -9,11 +9,15 @@ import "../styles/global.css";
 interface Props {
 	title?: string;
 	description?: string;
+	hideHeader?: boolean;
+	hideFooter?: boolean;
 }
 
 const {
 	title = "Noxitech | Digital Solutions & Automation",
 	description = "Bespoke digital solutions, automated workflows, and AI integrations for the modern enterprise.",
+	hideHeader = false,
+	hideFooter = false,
 } = Astro.props;
 ---
 
@@ -55,10 +59,10 @@ const {
 			</div>
 		</div>
 
-		<Header />
+		{!hideHeader && <Header />}
 		<main>
 			<slot />
 		</main>
-		<Footer />
+		{!hideFooter && <Footer />}
 	</body>
 </html>

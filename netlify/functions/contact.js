@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
 
   try {
     const data = JSON.parse(event.body);
-    const { firstName, lastName, email, message } = data;
+    const { firstName, lastName, email, message, reason } = data;
 
     // Server-side Honeypot check
     if (data['bot-field']) {
@@ -21,7 +21,7 @@ exports.handler = async (event, context) => {
     }
 
     // Basic validation
-    if (!firstName || !lastName || !email || !message) {
+    if (!firstName || !lastName || !email || !reason || (reason !== 'audit' && !message)) {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: "Missing required fields" }),
@@ -56,8 +56,6 @@ exports.handler = async (event, context) => {
       if (!webhookResponse.ok) {
         throw new Error(`Webhook responded with status: ${webhookResponse.status}`);
       }
-
-      console.log("Success: Data sent to webhook");
     } catch (error) {
       console.error("Error sending to webhook:", error);
       // We still return 200 to the user to avoid scaring them,
