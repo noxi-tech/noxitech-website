@@ -23,9 +23,16 @@ const contactOptions = [
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
         <div>
-          <h2 class="text-base font-semibold leading-7 text-primary uppercase tracking-[0.2em]">Audit</h2>
-          <h1 class="mt-2 text-5xl sm:text-7xl font-black tracking-tight text-white leading-tight">
-            Book your <br /><span class="emphasis">free audit</span> <br /> today
+          <h2
+            class="text-base font-semibold leading-7 text-primary uppercase tracking-[0.2em]"
+          >
+            Contact
+          </h2>
+          <h1
+            class="mt-2 text-5xl sm:text-7xl font-black tracking-tight text-white leading-tight"
+          >
+            Book your <br /><span class="emphasis">free audit</span>
+            <br /> today
           </h1>
           <p class="mt-8 text-xl leading-8 font-medium">
             Ready to scale your business with intelligent automation? Our team
@@ -35,7 +42,9 @@ const contactOptions = [
 
           <div class="mt-16 space-y-10">
             <div class="flex items-center gap-6 group">
-              <div class="w-14 h-14 rounded-[1.25rem] bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div
+                class="w-14 h-14 rounded-[1.25rem] bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+              >
                 <Icon name="lucide:map-pin" class="w-6 h-6 text-primary" />
               </div>
               <div>
@@ -46,14 +55,38 @@ const contactOptions = [
           </div>
         </div>
 
-        <div class="bg-white/5 p-8 sm:p-12 rounded-[3rem] border border-white/10 shadow-2xl backdrop-blur-md">
+        <div
+          class="bg-white/5 p-8 sm:p-12 rounded-[3rem] border border-white/10 shadow-2xl backdrop-blur-md"
+        >
           <form id="contact-form" class="space-y-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <FormInput label="First name" id="first-name" name="firstName" required placeholder="Jane" autocomplete="given-name" />
-              <FormInput label="Last name" id="last-name" name="lastName" required placeholder="Doe" autocomplete="family-name" />
+              <FormInput
+                label="First name"
+                id="first-name"
+                name="firstName"
+                required
+                placeholder="Jane"
+                autocomplete="given-name"
+              />
+              <FormInput
+                label="Last name"
+                id="last-name"
+                name="lastName"
+                required
+                placeholder="Doe"
+                autocomplete="family-name"
+              />
             </div>
-            
-            <FormInput label="Email Address" id="email" name="email" type="email" required placeholder="jane@company.com" autocomplete="email" />
+
+            <FormInput
+              label="Email Address"
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="jane@company.com"
+              autocomplete="email"
+            />
 
             <FormSelect
               label="Why are you contacting us?"
@@ -64,27 +97,48 @@ const contactOptions = [
             />
 
             <div id="message-container">
-              <FormTextarea 
-                label="Your Message" 
-                id="message" 
-                name="message" 
-                required 
-                placeholder="How can we help?" 
+              <FormTextarea
+                label="Your Message"
+                id="message"
+                name="message"
+                required
+                placeholder="How can we help?"
               />
             </div>
 
-            <input type="text" name="bot-field" class="hidden" tabindex="-1" autocomplete="off" />
+            <input
+              type="text"
+              name="bot-field"
+              class="hidden"
+              tabindex="-1"
+              autocomplete="off"
+            />
 
-            <button type="submit" id="submit-btn" class="btn-primary w-full py-5 text-lg cursor-pointer flex items-center justify-center gap-2">
+            <button
+              type="submit"
+              id="submit-btn"
+              class="btn-primary w-full py-5 text-lg cursor-pointer flex items-center justify-center gap-2"
+            >
               <span>Book My Free Audit</span>
-              <Icon name="lucide:loader-2" class="w-5 h-5 animate-spin hidden" id="submit-loader" />
+              <Icon
+                name="lucide:loader-2"
+                class="w-5 h-5 animate-spin hidden"
+                id="submit-loader"
+              />
             </button>
 
-            <div id="form-feedback" class="hidden p-4 rounded-2xl text-center font-medium transition-all duration-300 transform scale-95 opacity-0"></div>
+            <div
+              id="form-feedback"
+              class="hidden p-4 rounded-2xl text-center font-medium transition-all duration-300 transform scale-95 opacity-0"
+            >
+            </div>
           </form>
 
           <p class="text-center text-secondary mt-8">
-            Having trouble? <a id="mailto-btn" class="text-primary cursor-pointer">contact us</a>
+            Having trouble? <a
+              id="mailto-btn"
+              class="text-primary cursor-pointer">contact us</a
+            >
           </p>
         </div>
       </div>
@@ -92,7 +146,11 @@ const contactOptions = [
   </div>
 
   <style>
-    #form-feedback.show { display: block; transform: scale(1); opacity: 1; }
+    #form-feedback.show {
+      display: block;
+      transform: scale(1);
+      opacity: 1;
+    }
   </style>
 
   <script define:vars={{ user, domain }}>
@@ -119,7 +177,8 @@ const contactOptions = [
         } else {
           messageContainer.classList.remove("hidden");
           messageInput.required = true;
-          messageLabel.textContent = val === "support" ? "Your Issue" : "Your Message";
+          messageLabel.textContent =
+            val === "support" ? "Your Issue" : "Your Message";
         }
       };
 
@@ -136,7 +195,8 @@ const contactOptions = [
         // Anti-spam cooldown
         const last = localStorage.getItem("last_contact_submission");
         if (last && Date.now() - parseInt(last) < 600000) {
-          feedback.textContent = "Please wait a few minutes before sending another message.";
+          feedback.textContent =
+            "Please wait a few minutes before sending another message.";
           feedback.classList.add("bg-red-500/20", "text-red-400", "show");
           feedback.classList.remove("hidden");
           return;
@@ -161,7 +221,10 @@ const contactOptions = [
             feedback.classList.add("bg-green-500/20", "text-green-400", "show");
             feedback.classList.remove("hidden");
             form.reset();
-            localStorage.setItem("last_contact_submission", Date.now().toString());
+            localStorage.setItem(
+              "last_contact_submission",
+              Date.now().toString(),
+            );
           } else {
             throw new Error();
           }
@@ -177,14 +240,20 @@ const contactOptions = [
       };
 
       // Handle URL query pre-selection
-      const reasonQuery = new URLSearchParams(window.location.search).get("reason");
+      const reasonQuery = new URLSearchParams(window.location.search).get(
+        "reason",
+      );
       if (reasonQuery) {
         reasonSelect.value = reasonQuery;
         reasonSelect.dispatchEvent(new Event("change"));
         // Update the custom select UI as well
-        const customValueText = reasonSelect.closest(".custom-select-container")?.querySelector(".custom-select-value");
+        const customValueText = reasonSelect
+          .closest(".custom-select-container")
+          ?.querySelector(".custom-select-value");
         if (customValueText) {
-          const option = Array.from(reasonSelect.options).find(o => o.value === reasonQuery);
+          const option = Array.from(reasonSelect.options).find(
+            (o) => o.value === reasonQuery,
+          );
           if (option) {
             customValueText.textContent = option.text;
             customValueText.classList.remove("text-white/30");
