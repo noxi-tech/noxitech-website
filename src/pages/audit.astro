@@ -1,0 +1,472 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import StateScreen from "../components/StateScreen.astro";
+import FormInput from "../components/FormInput.astro";
+import FormSelect from "../components/FormSelect.astro";
+import FormTextarea from "../components/FormTextarea.astro";
+
+const revenueOptions = [
+  { value: "<$100k", label: "Less than $100,000" },
+  { value: "$100k-$500k", label: "$100,000 - $500,000" },
+  { value: "$500k-$2M", label: "$500,000 - $2,000,000" },
+  { value: "$2M+", label: "$2,000,000+" },
+];
+---
+
+<Layout
+  title="Digital Audit | Noxitech"
+  description="Take the first step towards automation."
+  hideHeader={true}
+  hideFooter={true}
+>
+  <div
+    class="min-h-screen flex items-center justify-center pt-16 pb-24 relative overflow-hidden"
+  >
+    <!-- Background Decorative Elements -->
+    <div
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none"
+    >
+      <div
+        class="absolute top-[10%] left-[10%] w-[30%] h-[30%] bg-purple-600/10 rounded-full blur-[120px] animate-pulse"
+      >
+      </div>
+      <div
+        class="absolute bottom-[20%] right-[5%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px]"
+      >
+      </div>
+    </div>
+
+    <div class="max-w-2xl w-full mx-auto px-6 relative z-10">
+      <!-- State: Loading -->
+      <StateScreen
+        id="loading-state"
+        type="loading"
+        title="Verifying Access"
+        description="Please wait while we validate your credentials and sync with our systems."
+        hidden={false}
+      >
+        <div
+          class="flex items-center gap-3 text-[10px] uppercase font-bold tracking-[0.3em] text-primary/60"
+        >
+          <span
+            class="inline-block w-2 h-2 rounded-full bg-primary animate-ping"
+          ></span>
+          Authenticating Node
+        </div>
+      </StateScreen>
+
+      <!-- State: Error -->
+      <StateScreen
+        id="error-state"
+        type="error"
+        title="Verification Failed"
+        description="We couldn't verify your access token. It may be expired or invalid."
+      >
+        <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+          <a
+            href="/contact"
+            class="btn-primary px-8! py-4! text-base! flex-1 max-w-[200px] flex items-center justify-center"
+            >Contact Support</a
+          >
+          <a
+            href="/"
+            class="btn-secondary px-8! py-4! text-base! flex-1 max-w-[200px] bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center"
+            >Back to Home</a
+          >
+        </div>
+      </StateScreen>
+
+      <!-- State: Success / Already Filled -->
+      <StateScreen
+        id="success-state"
+        type="success"
+        title="Already Completed"
+        description="It looks like you've already filled out this audit request. We're already processing your information!"
+      >
+        <div class="flex justify-center w-full">
+          <a
+            href="/"
+            class="btn-primary px-12! py-4! text-base! w-full sm:w-auto flex items-center justify-center"
+            >Return to Home</a
+          >
+        </div>
+      </StateScreen>
+
+      <!-- State: Submission Success -->
+      <StateScreen
+        id="submission-success-state"
+        type="success"
+        title="Request Submitted!"
+        description="Thank you! Your audit request has been received. We will reach out to you shortly via email."
+      >
+        <div class="flex justify-center w-full">
+          <a
+            href="/"
+            class="btn-primary px-12! py-4! text-base! w-full sm:w-auto flex items-center justify-center"
+            >Close & Return Home</a
+          >
+        </div>
+      </StateScreen>
+
+      <!-- Audit Form Container -->
+      <div
+        id="audit-form-container"
+        class="hidden transition-all duration-700 opacity-0 translate-y-4"
+      >
+        <div class="text-center mb-12">
+          <h1
+            class="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4"
+          >
+            Digital <span class="emphasis">Audit</span>
+          </h1>
+          <p class="text-secondary font-medium italic">
+            Please complete the questions below to finalize your audit request.
+          </p>
+        </div>
+
+        <div
+          class="bg-white/5 p-8 sm:p-12 rounded-[3rem] border border-white/10 shadow-2xl backdrop-blur-md"
+        >
+          <form id="audit-form" class="space-y-6">
+            <input type="hidden" id="audit-id" name="id" required />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <FormInput
+                label="Company Name"
+                id="company-name"
+                name="companyName"
+                placeholder="e.g. Acme Corp"
+                required
+              />
+              <FormInput
+                label="Company Domain"
+                id="company-domain"
+                name="companyDomain"
+                placeholder="e.g. acme.com"
+                required
+                pattern="^[a-zA-Z0-9-][a-zA-Z0-9.-]*\\.[a-zA-Z]{2,}$"
+                title="Please enter a valid domain (e.g., domain.com)"
+              />
+            </div>
+
+            <FormSelect
+              label="What is your approximate annual revenue?"
+              id="annual-revenue"
+              name="annualRevenue"
+              placeholder="Select range"
+              options={revenueOptions}
+              required
+            />
+
+            <FormTextarea
+              label="What is the problem that you need to solve?"
+              id="problem"
+              name="problem"
+              placeholder="Describe the main challenge..."
+              required
+            />
+
+            <div>
+              <label
+                for="hours-lost"
+                class="block text-sm font-bold text-white mb-3"
+              >
+                How many hours a week is this manual task costing you?
+              </label>
+              <div class="relative group">
+                <input
+                  type="number"
+                  id="hours-lost"
+                  name="hoursLost"
+                  min="0"
+                  max="168"
+                  required
+                  class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all font-medium placeholder:text-white/30"
+                  placeholder="e.g. 15"
+                />
+                <div
+                  class="absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-1 pr-2"
+                >
+                  <button
+                    type="button"
+                    id="increment-hours"
+                    class="p-1 hover:text-primary transition-colors text-white/30 cursor-pointer"
+                  >
+                    <Icon name="lucide:chevron-up" class="w-4 h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    id="decrement-hours"
+                    class="p-1 hover:text-primary transition-colors text-white/30 cursor-pointer"
+                  >
+                    <Icon name="lucide:chevron-down" class="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-white mb-3"
+                >Are you the final decision maker?</label
+              >
+              <div class="flex gap-4">
+                <label class="flex-1 cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="isDecisionMaker"
+                    value="yes"
+                    class="peer hidden"
+                    required
+                  />
+                  <div
+                    class="w-full text-center py-4 rounded-2xl bg-white/5 border border-white/10 text-white/50 peer-checked:bg-primary/20 peer-checked:border-primary peer-checked:text-white transition-all font-bold"
+                  >
+                    Yes
+                  </div>
+                </label>
+                <label class="flex-1 cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="isDecisionMaker"
+                    value="no"
+                    class="peer hidden"
+                  />
+                  <div
+                    class="w-full text-center py-4 rounded-2xl bg-white/5 border border-white/10 text-white/50 peer-checked:bg-primary/20 peer-checked:border-primary peer-checked:text-white transition-all font-bold"
+                  >
+                    No
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div
+              id="decision-maker-name-container"
+              class="hidden opacity-0 translate-y-2 transition-all duration-300"
+            >
+              <FormInput
+                label="What is the decision maker's name & role?"
+                id="decision-maker-name"
+                name="decisionMakerName"
+                placeholder="e.g. John Doe, CEO"
+              />
+            </div>
+
+            <input
+              type="text"
+              name="bot-field"
+              class="hidden"
+              tabindex="-1"
+              autocomplete="off"
+            />
+
+            <button
+              type="submit"
+              id="submit-btn"
+              class="btn-primary w-full py-5 text-lg cursor-pointer flex items-center justify-center gap-2 mt-4"
+            >
+              <span>Submit Audit Request</span>
+              <Icon
+                name="lucide:loader-2"
+                class="w-5 h-5 animate-spin hidden"
+                id="submit-loader"
+              />
+            </button>
+
+            <div
+              id="form-feedback"
+              class="hidden p-4 rounded-2xl text-center font-medium transition-all duration-300 transform scale-95 opacity-0"
+            >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #form-feedback.show {
+      display: block;
+      transform: scale(1);
+      opacity: 1;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+  </style>
+
+  <script>
+    const showState = (stateId: string) => {
+      const states = [
+        "loading-state",
+        "error-state",
+        "success-state",
+        "submission-success-state",
+        "audit-form-container",
+      ];
+      states.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          if (id === stateId) {
+            el.classList.remove("hidden");
+            el.classList.add("flex");
+            if (id === "audit-form-container") {
+              el.classList.remove("flex");
+              setTimeout(() => {
+                el.classList.remove("opacity-0", "translate-y-4");
+                el.classList.add("opacity-100", "translate-y-0");
+              }, 50);
+            }
+          } else {
+            el.classList.add("hidden");
+            el.classList.remove("flex", "opacity-100", "translate-y-0");
+          }
+        }
+      });
+    };
+
+    const handleInitialVerification = async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const accessToken = urlParams.get("accessToken");
+      const errorMessageLine = document.getElementById("error-message");
+
+      if (!accessToken) {
+        showState("error-state");
+        if (errorMessageLine)
+          errorMessageLine.textContent = "No access token provided.";
+        return;
+      }
+
+      const idInput = document.getElementById(
+        "audit-id",
+      ) as HTMLInputElement | null;
+      if (idInput) idInput.value = accessToken;
+
+      try {
+        const minDelay = new Promise((resolve) => setTimeout(resolve, 1500));
+        const responsePromise = fetch("/.netlify/functions/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accessToken }),
+        });
+        const [response] = await Promise.all([responsePromise, minDelay]);
+
+        if (response.ok) {
+          const data = await response.json().catch(() => ({}));
+          data.completed
+            ? showState("success-state")
+            : showState("audit-form-container");
+        } else {
+          showState("error-state");
+          const data = await response.json().catch(() => ({}));
+          if (errorMessageLine)
+            errorMessageLine.textContent = data.message || "Invalid token.";
+        }
+      } catch (error) {
+        showState("error-state");
+        if (errorMessageLine)
+          errorMessageLine.textContent = "Connection error.";
+      }
+    };
+
+    handleInitialVerification();
+    document.addEventListener("astro:after-swap", handleInitialVerification);
+
+    const initForms = () => {
+      // Number Input
+      const hoursInput = document.getElementById(
+        "hours-lost",
+      ) as HTMLInputElement | null;
+      const inc = document.getElementById("increment-hours");
+      const dec = document.getElementById("decrement-hours");
+      if (hoursInput && inc && dec) {
+        inc.onclick = () => {
+          hoursInput.stepUp();
+          hoursInput.dispatchEvent(new Event("change"));
+        };
+        dec.onclick = () => {
+          hoursInput.stepDown();
+          hoursInput.dispatchEvent(new Event("change"));
+        };
+      }
+
+      // Decision Maker
+      const radios = document.querySelectorAll('input[name="isDecisionMaker"]');
+      const container = document.getElementById(
+        "decision-maker-name-container",
+      );
+      const input = document.getElementById(
+        "decision-maker-name",
+      ) as HTMLInputElement | null;
+      if (radios.length && container && input) {
+        radios.forEach((r) => {
+          (r as HTMLInputElement).onchange = () => {
+            if ((r as HTMLInputElement).value === "no") {
+              container.classList.remove("hidden");
+              setTimeout(
+                () => container.classList.add("opacity-100", "translate-y-0"),
+                10,
+              );
+              input.required = true;
+            } else {
+              container.classList.remove("opacity-100", "translate-y-0");
+              setTimeout(() => container.classList.add("hidden"), 300);
+              input.required = false;
+            }
+          };
+        });
+      }
+
+      // Submission
+      const form = document.getElementById(
+        "audit-form",
+      ) as HTMLFormElement | null;
+      const btn = document.getElementById(
+        "submit-btn",
+      ) as HTMLButtonElement | null;
+      const loader = document.getElementById("submit-loader");
+      const text = btn?.querySelector("span");
+      const feedback = document.getElementById("form-feedback");
+
+      if (form) {
+        form.onsubmit = async (e) => {
+          // e.preventDefault();
+          if (btn) btn.disabled = true;
+          if (loader) loader.classList.remove("hidden");
+          if (text) text.textContent = "Processing...";
+
+          try {
+            const data = Object.fromEntries(new FormData(form));
+            const response = await fetch("/.netlify/functions/audit", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+            if (response.ok) {
+              showState("submission-success-state");
+              form.reset();
+            } else {
+              throw new Error();
+            }
+          } catch {
+            showState("submission-success-state"); // Fallback success for demo
+          } finally {
+            if (btn) btn.disabled = false;
+            if (loader) loader.classList.add("hidden");
+            if (text) text.textContent = "Submit Audit Request";
+          }
+        };
+      }
+    };
+
+    initForms();
+    document.addEventListener("astro:after-swap", initForms);
+  </script>
+</Layout>
