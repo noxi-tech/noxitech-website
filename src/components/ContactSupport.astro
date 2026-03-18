@@ -1,0 +1,60 @@
+---
+// src/components/ContactSupport.astro
+interface Props {
+  label?: string;
+  className?: string; // Extra custom classes
+  variant?: 'button' | 'link';
+}
+
+const { 
+  label = "Contact Support", 
+  className = "", 
+  variant = 'button' 
+} = Astro.props;
+
+const user = "contact";
+const domain = "noxitech.cloud";
+
+// Default styles based on variant
+const baseStyles = variant === 'button' 
+  ? "btn-primary px-8! py-3! text-base!" 
+  : "text-primary hover:text-primary/80 font-bold transition-colors";
+---
+
+<a
+  class={`contact-support-btn cursor-pointer inline-flex items-center gap-2 ${baseStyles} ${className}`}
+  data-user={user}
+  data-domain={domain}
+>
+  {label}
+</a>
+
+<script>
+  function setupContactButtons() {
+    const buttons = document.querySelectorAll('.contact-support-btn');
+    
+    buttons.forEach(btn => {
+      // Avoid duplicate listeners
+      if (btn.getAttribute('data-listener')) return;
+      
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const user = target.getAttribute('data-user');
+        const domain = target.getAttribute('data-domain');
+        
+        if (user && domain) {
+          window.location.href = `mailto:${user}@${domain}`;
+        }
+      });
+      
+      btn.setAttribute('data-listener', 'true');
+    });
+  }
+
+  // Initial setup
+  setupContactButtons();
+
+  // Handle SPA navigation
+  document.addEventListener('astro:after-swap', setupContactButtons);
+  document.addEventListener('astro:page-load', setupContactButtons);
+</script>

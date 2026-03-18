@@ -4,9 +4,7 @@ import { Icon } from "astro-icon/components";
 import FormInput from "../components/FormInput.astro";
 import FormSelect from "../components/FormSelect.astro";
 import FormTextarea from "../components/FormTextarea.astro";
-
-const user = "contact";
-const domain = "noxitech.cloud";
+import ContactSupport from "../components/ContactSupport.astro";
 
 const contactOptions = [
   { value: "inquiry", label: "General Inquiry" },
@@ -135,10 +133,7 @@ const contactOptions = [
           </form>
 
           <p class="text-center text-secondary mt-8">
-            Having trouble? <a
-              id="mailto-btn"
-              class="text-primary cursor-pointer">contact us</a
-            >
+            Having trouble? <ContactSupport variant="link" label="contact us" />
           </p>
         </div>
       </div>
@@ -153,20 +148,19 @@ const contactOptions = [
     }
   </style>
 
-  <script define:vars={{ user, domain }}>
+  <script>
     const initContactForm = () => {
-      const form = document.getElementById("contact-form");
-      const reasonSelect = document.getElementById("reason");
-      const messageContainer = document.getElementById("message-container");
-      const messageInput = document.getElementById("message");
-      const messageLabel = messageContainer?.querySelector("label");
-      const submitBtn = document.getElementById("submit-btn");
-      const submitLoader = document.getElementById("submit-loader");
-      const btnText = submitBtn?.querySelector("span");
-      const feedback = document.getElementById("form-feedback");
-      const mailtoBtn = document.getElementById("mailto-btn");
+      const form = document.getElementById("contact-form") as HTMLFormElement;
+      const reasonSelect = document.getElementById("reason") as HTMLSelectElement;
+      const messageContainer = document.getElementById("message-container") as HTMLElement;
+      const messageInput = document.getElementById("message") as HTMLTextAreaElement;
+      const messageLabel = messageContainer?.querySelector("label") as HTMLLabelElement;
+      const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+      const submitLoader = document.getElementById("submit-loader") as HTMLElement;
+      const btnText = submitBtn?.querySelector("span") as HTMLSpanElement;
+      const feedback = document.getElementById("form-feedback") as HTMLElement;
 
-      if (!form || !reasonSelect) return;
+      if (!form || !reasonSelect || !messageContainer || !messageInput || !feedback || !messageLabel) return;
 
       // Handle dynamic message visibility based on reason
       reasonSelect.onchange = () => {
@@ -181,13 +175,6 @@ const contactOptions = [
             val === "support" ? "Your Issue" : "Your Message";
         }
       };
-
-      // Handle mailto fallback
-      if (mailtoBtn) {
-        mailtoBtn.onclick = () => {
-          window.location.href = `mailto:${user}@${domain}`;
-        };
-      }
 
       form.onsubmit = async (e) => {
         e.preventDefault();
