@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /audit
+
+Sitemap: https://noxitech.cloud/sitemap-index.xml

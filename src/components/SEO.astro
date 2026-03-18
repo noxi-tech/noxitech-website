@@ -1,0 +1,86 @@
+---
+// src/components/SEO.astro
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: URL | string;
+  type?: string;
+  robots?: string;
+}
+
+const {
+  title = "Noxitech | Buy Back Your Time with Automation",
+  description = "Bespoke digital solutions, automated workflows, and AI integrations. We help businesses reclaim 20+ hours every week with custom automation.",
+  image = "/assets/og-image.png",
+  canonicalURL = Astro.url,
+  type = "website",
+  robots = "index, follow",
+} = Astro.props;
+
+const siteTitle = title.includes("Noxitech") ? title : `${title} | Noxitech`;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{siteTitle}</title>
+<meta name="title" content={siteTitle} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={siteTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={siteTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Robots -->
+<meta name="robots" content={robots} />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Noxitech",
+    "url": "https://noxitech.cloud",
+    "logo": "https://noxitech.cloud/favicon.svg",
+    "sameAs": ["https://github.com/noxi-tech"]
+  }
+</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://noxitech.cloud/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": title.split('|')[0].trim(),
+        "item": Astro.url
+      }
+    ]
+  }
+</script>

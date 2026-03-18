@@ -10,6 +10,31 @@ const domain = "noxitech.cloud";
     title="FAQs | Noxitech"
     description="Frequently asked questions about our process, pricing, and technology."
 >
+    <!-- FAQ Schema -->
+    <script type="application/ld+json" is:inline>
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What exactly do you deliver?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "We build custom, autonomous software engines tailored to your unique business logic. Rather than selling you another monthly subscription for generic software, we create private operational assets."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How do you calculate ROI?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Before writing a single line of code, we run a full 'Mathematical Audit' on your workflow. We calculate the manual hours spent per week and map it against the development cost."
+                    }
+                }
+            ]
+        }
+    </script>
     <div class="pt-32 pb-24 sm:pt-40 sm:pb-32">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <!-- Header -->

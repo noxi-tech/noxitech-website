@@ -4,11 +4,14 @@ import tailwindcss from '@tailwindcss/vite';
 import netlify from '@astrojs/netlify';
 import icon from 'astro-icon';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://noxitech.cloud',
   vite: {
     plugins: [tailwindcss()]
   },
   adapter: netlify(),
-  integrations: [icon()]
+  integrations: [icon(), sitemap()]
 });
