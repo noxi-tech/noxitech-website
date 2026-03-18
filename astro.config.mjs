@@ -13,5 +13,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   adapter: netlify(),
-  integrations: [icon(), sitemap()]
+  integrations: [icon(), sitemap({
+    filter: (page) => page !== 'https://noxitech.cloud/audit' && page !== 'https://noxitech.cloud/audit/'
+  })]
 });
