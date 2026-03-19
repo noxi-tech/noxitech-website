@@ -438,7 +438,7 @@ const revenueOptions = [
 
       if (form) {
         form.onsubmit = async (e) => {
-          // e.preventDefault();
+          e.preventDefault();
           if (btn) btn.disabled = true;
           if (loader) loader.classList.remove("hidden");
           if (text) text.textContent = "Processing...";
