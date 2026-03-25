@@ -1,20 +1,19 @@
 <nav class="fixed top-6 left-0 right-0 z-50 mx-auto max-w-7xl px-6">
   <div
     id="main-header"
-    class="relative z-50 glass rounded-full px-6 py-2.5 flex justify-between items-center shadow-2xl shadow-purple-500/5"
+    class="relative z-50 bg-[#0f0f14]/40 backdrop-blur-2xl saturate-150 border border-white/10 rounded-full px-6 py-2.5 flex justify-between items-center shadow-2xl shadow-purple-500/5 transition-all duration-500"
   >
-  
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const isFirstVisit = !sessionStorage.getItem('header_animated');
-    const header = document.getElementById('main-header');
-    
-    if (header && isFirstVisit) {
-      header.classList.add('reveal-blur');
-      sessionStorage.setItem('header_animated', 'true');
-    }
-  });
-</script>
+    <script>
+      document.addEventListener("astro:page-load", () => {
+        const isFirstVisit = !sessionStorage.getItem("header_animated");
+        const header = document.getElementById("main-header");
+
+        if (header && isFirstVisit) {
+          header.classList.add("reveal-blur");
+          sessionStorage.setItem("header_animated", "true");
+        }
+      });
+    </script>
     <a
       href="/"
       class="text-xl font-bold text-white tracking-tight flex items-center gap-2"

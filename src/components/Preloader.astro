@@ -83,7 +83,13 @@ import { Icon } from "astro-icon/components";
             if (statusText) statusText.textContent = 'System Ready';
             
             setTimeout(() => {
-                if (preloader) preloader.classList.add('preloader-hidden');
+                if (preloader) {
+                    preloader.classList.add('preloader-hidden');
+                    // Completely remove from rendering tree after fade
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 700);
+                }
                 // Use a small delay before adding .loaded to ensure smooth transition
                 document.body.classList.add('loaded');
                 document.body.style.overflow = '';
