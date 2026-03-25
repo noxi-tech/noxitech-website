@@ -13,6 +13,7 @@ interface Props {
 	image?: string;
 	type?: string;
 	robots?: string;
+	extraSchema?: object;
 	hideHeader?: boolean;
 	hideFooter?: boolean;
 }
@@ -23,6 +24,7 @@ const {
 	image,
 	type,
 	robots,
+	extraSchema,
 	hideHeader = false,
 	hideFooter = false,
 } = Astro.props;
@@ -31,7 +33,7 @@ const {
 <!doctype html>
 <html lang="en" class="scroll-smooth">
 	<head>
-		<SEO {title} {description} {image} {type} {robots} />
+		<SEO {title} {description} {image} {type} {robots} {extraSchema} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link

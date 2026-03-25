@@ -2,37 +2,53 @@
 import Layout from "../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 import ContactSupport from "../components/ContactSupport.astro";
+
+const faqs = [
+    {
+        q: "What exactly do you deliver?",
+        a: "We build custom, autonomous software engines tailored to your unique business logic. Rather than selling you another monthly subscription for generic software, we create private operational assets, such as custom API integrators, automated data pipelines, and intelligent routing scripts.",
+    },
+    {
+        q: "Do I have to maintain the code?",
+        a: "No. While you own the data and strictly control the environment the script runs in, we provide monthly reporting and upkeep. If an API endpoint changes or a software vendor updates their systems, we automatically adjust your engine so there's zero downtime or maintenance required from your team.",
+    },
+    {
+        q: "How do you calculate ROI?",
+        a: "Before writing a single line of code, we run a full 'Mathematical Audit' on your workflow. We calculate the manual hours spent per week on the task, multiply it by your team's hourly rate, and map it against the one-time development cost of our engine. We only take on projects where the automation guarantees a full return on investment in under 90 days.",
+    },
+    {
+        q: "What systems can you integrate with?",
+        a: "If it has a public API, a webhook, or a scalable database, we can integrate it. We actively build engines linking Shopify, Stripe, HubSpot, Salesforce, Airtable, Notion, Discord, custom PostgreSQL databases, and hundreds of other enterprise tools.",
+    },
+    {
+        q: "How long does it take to deploy an automation?",
+        a: "Most core workflow automations are scoped, tested, and fully deployed within 3 to 4 weeks. High-complexity enterprise architectures involving custom-trained AI or multiple legacy systems may take 6 to 8 weeks. You will have a precise timeline before we begin.",
+    },
+    {
+        q: "Is our business data secure?",
+        a: "Absolutely. Security is central to our operational DNA. We utilize robust encryption, strictly scoped API keys, and secure cloud environments. Your automation engine processes data securely, and Noxitech does not store, sell, or utilize your internal business data.",
+    },
+];
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a,
+        },
+    })),
+};
 ---
 
 <Layout
     title="FAQs | Noxitech"
     description="Frequently asked questions about our process, pricing, and technology."
+    extraSchema={faqSchema}
 >
-    <!-- FAQ Schema -->
-    <script type="application/ld+json" is:inline>
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "What exactly do you deliver?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "We build custom, autonomous software engines tailored to your unique business logic. Rather than selling you another monthly subscription for generic software, we create private operational assets."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "How do you calculate ROI?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Before writing a single line of code, we run a full 'Mathematical Audit' on your workflow. We calculate the manual hours spent per week and map it against the development cost."
-                    }
-                }
-            ]
-        }
-    </script>
     <div class="pt-32 pb-24 sm:pt-40 sm:pb-32">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <!-- Header -->
@@ -61,32 +77,7 @@ import ContactSupport from "../components/ContactSupport.astro";
             <!-- FAQ Accordion Layout -->
             <div class="max-w-4xl mx-auto space-y-6 mb-32">
                 {
-                    [
-                        {
-                            q: "What exactly do you deliver?",
-                            a: "We build custom, autonomous software engines tailored to your unique business logic. Rather than selling you another monthly subscription for generic software, we create private operational assets, such as custom API integrators, automated data pipelines, and intelligent routing scripts.",
-                        },
-                        {
-                            q: "Do I have to maintain the code?",
-                            a: "No. While you own the data and strictly control the environment the script runs in, we provide monthly reporting and upkeep. If an API endpoint changes or a software vendor updates their systems, we automatically adjust your engine so there's zero downtime or maintenance required from your team.",
-                        },
-                        {
-                            q: "How do you calculate ROI?",
-                            a: "Before writing a single line of code, we run a full 'Mathematical Audit' on your workflow. We calculate the manual hours spent per week on the task, multiply it by your team's hourly rate, and map it against the one-time development cost of our engine. We only take on projects where the automation guarantees a full return on investment in under 90 days.",
-                        },
-                        {
-                            q: "What systems can you integrate with?",
-                            a: "If it has a public API, a webhook, or a scalable database, we can integrate it. We actively build engines linking Shopify, Stripe, HubSpot, Salesforce, Airtable, Notion, Discord, custom PostgreSQL databases, and hundreds of other enterprise tools.",
-                        },
-                        {
-                            q: "How long does it take to deploy an automation?",
-                            a: "Most core workflow automations are scoped, tested, and fully deployed within 3 to 4 weeks. High-complexity enterprise architectures involving custom-trained AI or multiple legacy systems may take 6 to 8 weeks. You will have a precise timeline before we begin.",
-                        },
-                        {
-                            q: "Is our business data secure?",
-                            a: "Absolutely. Security is central to our operational DNA. We utilize robust encryption, strictly scoped API keys, and secure cloud environments. Your automation engine processes data securely, and Noxitech does not store, sell, or utilize your internal business data.",
-                        },
-                    ].map((faq) => (
+                    faqs.map((faq) => (
                         <div class="p-8 rounded-4xl bg-white/5 border border-white/10 hover:border-primary/40 transition-all group group-open relative overflow-hidden text-left w-full h-full flex flex-col">
                             <div class="flex gap-6 relative z-10">
                                 <div class="mt-1 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">

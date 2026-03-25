@@ -7,6 +7,7 @@ export interface Props {
   canonicalURL?: URL | string;
   type?: string;
   robots?: string;
+  extraSchema?: object;
 }
 
 const {
@@ -16,9 +17,49 @@ const {
   canonicalURL = Astro.url,
   type = "website",
   robots = "index, follow",
+  extraSchema,
 } = Astro.props;
 
-const siteTitle = title.includes("Noxitech") ? title : `${title} | Noxitech`;
+const siteName = "Noxitech";
+const siteUrl = "https://noxitech.cloud";
+const siteTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+
+// Improved Breadcrumb Logic
+const isHome = Astro.url.pathname === "/";
+const pageName = title.split('|')[0].trim();
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": siteName,
+  "url": siteUrl,
+  "logo": `${siteUrl}/favicon.svg`,
+  "sameAs": ["https://github.com/noxi-tech"]
+};
+
+const breadcrumbElements = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": siteUrl
+  }
+];
+
+if (!isHome && pageName !== "Home") {
+  breadcrumbElements.push({
+    "@type": "ListItem",
+    "position": 2,
+    "name": pageName,
+    "item": Astro.url.href
+  });
+}
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbElements
+};
 ---
 
 <!-- Global Metadata -->
@@ -27,6 +68,7 @@ const siteTitle = title.includes("Noxitech") ? title : `${title} | Noxitech`;
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#9933FF" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -42,6 +84,7 @@ const siteTitle = title.includes("Noxitech") ? title : `${title} | Noxitech`;
 <meta property="og:title" content={siteTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:site_name" content={siteName} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -54,33 +97,6 @@ const siteTitle = title.includes("Noxitech") ? title : `${title} | Noxitech`;
 <meta name="robots" content={robots} />
 
 <!-- Structured Data -->
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Noxitech",
-    "url": "https://noxitech.cloud",
-    "logo": "https://noxitech.cloud/favicon.svg",
-    "sameAs": ["https://github.com/noxi-tech"]
-  }
-</script>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://noxitech.cloud/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": title.split('|')[0].trim(),
-        "item": Astro.url
-      }
-    ]
-  }
-</script>
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+{extraSchema && <script type="application/ld+json" set:html={JSON.stringify(extraSchema)} />}
