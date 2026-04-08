@@ -2,6 +2,16 @@ import type { APIRoute } from 'astro';
 import { Client } from "@hubspot/api-client";
 
 export const POST: APIRoute = async ({ request }) => {
+  // ACCESS SECRETS ONLY INSIDE THE HANDLER
+  const HUBSPOT_TOKEN = process.env.HUBSPOT_ACCESS_TOKEN || (globalThis as any).process?.env?.HUBSPOT_ACCESS_TOKEN;
+
+  if (!HUBSPOT_TOKEN) {
+    console.error("[Vetting API] HUBSPOT_ACCESS_TOKEN is missing at runtime.");
+    return new Response(JSON.stringify({ 
+      message: "Server configuration error. HUBSPOT_ACCESS_TOKEN is missing." 
+    }), { status: 500 });
+  }
+
   try {
     const { token } = await request.json();
 
@@ -9,7 +19,7 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ message: "No token provided." }), { status: 400 });
     }
 
-    const hubspot = new Client({ accessToken: process.env.HUBSPOT_ACCESS_TOKEN || (import.meta as any).env.HUBSPOT_ACCESS_TOKEN });
+    const hubspot = new Client({ accessToken: HUBSPOT_TOKEN });
 
     // Search for contact by vetting_token
     const searchResponse = await hubspot.crm.contacts.searchApi.doSearch({
@@ -18,7 +28,7 @@ export const POST: APIRoute = async ({ request }) => {
           filters: [
             {
               propertyName: "vetting_token",
-              operator: "EQ" as any, // FilterOperatorEnum.Eq
+              operator: "EQ" as any, 
               value: token,
             },
           ],

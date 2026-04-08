@@ -18,22 +18,26 @@ const VettingCompletionSchema = z.object({
 });
 
 export const POST: APIRoute = async ({ request }) => {
+  // ACCESS SECRETS ONLY INSIDE THE HANDLER
+  const TRIGGER_KEY = process.env.TRIGGER_SECRET_KEY || (globalThis as any).process?.env?.TRIGGER_SECRET_KEY;
+  if (TRIGGER_KEY) {
+    process.env.TRIGGER_SECRET_KEY = TRIGGER_KEY;
+  }
+
   try {
     const body = await request.json();
 
-    // 1. Validate Input
     const result = VettingCompletionSchema.safeParse(body);
     if (!result.success) {
-      return new Response(JSON.stringify({
-        error: 'Validation failed',
-        details: result.error.errors
-      }), { status: 400 });
+      return new Response(JSON.stringify({ error: 'Validation failed', details: result.error.errors }), { status: 400 });
     }
 
     const data = result.data;
 
-    // 2. Complete Trigger.dev Waitpoint
-    // Resuming the paused task with the provided token and all captured vetting data.
+    if (!process.env.TRIGGER_SECRET_KEY) {
+      throw new Error("TRIGGER_SECRET_KEY is missing. Please add it to the Netlify dashboard.");
+    }
+
     await wait.completeToken(data.token, {
       companyName: data.companyName,
       companyDomain: data.companyDomain,
@@ -45,16 +49,13 @@ export const POST: APIRoute = async ({ request }) => {
       decisionMakerName: data.decisionMakerName
     });
 
-    console.log(`[API] Vetting Completed for token: ${data.token}`);
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
 
-    return new Response(JSON.stringify({
-      success: true
-    }), { status: 200 });
-
-  } catch (error) {
+  } catch (error: any) {
     console.error('[API] Vetting Completion Error:', error);
     return new Response(JSON.stringify({
-      error: 'Failed to complete vetting'
+      error: 'Failed to complete vetting',
+      message: error.message || 'Unknown error'
     }), { status: 500 });
   }
 };
