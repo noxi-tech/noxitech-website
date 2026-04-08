@@ -1,0 +1,5 @@
+/vetting
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/vetting/*
+  X-Robots-Tag: noindex, nofollow, noarchive

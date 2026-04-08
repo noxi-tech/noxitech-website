@@ -9,11 +9,13 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://noxitech.cloud',
+  output: 'server',
   vite: {
+    // @ts-ignore
     plugins: [tailwindcss()]
   },
   adapter: netlify(),
   integrations: [icon(), sitemap({
-    filter: (page) => page !== 'https://noxitech.cloud/audit' && page !== 'https://noxitech.cloud/audit/'
+    filter: (page) => page !== 'https://noxitech.cloud/vetting' && page !== 'https://noxitech.cloud/vetting/'
   })]
 });

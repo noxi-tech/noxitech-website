@@ -1,10 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Icon } from "astro-icon/components";
 import StateScreen from "../components/StateScreen.astro";
 import FormInput from "../components/FormInput.astro";
 import FormSelect from "../components/FormSelect.astro";
 import FormTextarea from "../components/FormTextarea.astro";
+import { Icon } from "astro-icon/components";
+
+// Get token from URL
+const token = Astro.url.searchParams.get("token");
 
 const revenueOptions = [
   { value: "<$100k", label: "Less than $100,000" },
@@ -15,8 +18,8 @@ const revenueOptions = [
 ---
 
 <Layout
-  title="Digital Audit | Noxitech"
-  description="Take the first step towards automation."
+  title="Get Vetted | Noxitech"
+  description="Finalize your qualification."
   robots="noindex, nofollow"
   hideHeader={true}
   hideFooter={true}
@@ -24,7 +27,7 @@ const revenueOptions = [
   <div
     class="min-h-screen flex items-center justify-center pt-16 pb-24 relative overflow-hidden"
   >
-    <!-- Background Decorative Elements -->
+    <!-- Background Decor (same as audit page) -->
     <div
       class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none"
     >
@@ -39,12 +42,12 @@ const revenueOptions = [
     </div>
 
     <div class="max-w-2xl w-full mx-auto px-6 relative z-10">
-      <!-- State: Loading -->
+      <!-- State: Loading (Mimicking audit page) -->
       <StateScreen
         id="loading-state"
         type="loading"
-        title="Verifying Access"
-        description="Please wait while we validate your credentials and sync with our systems."
+        title="Preparing Your Profile"
+        description="Just a moment while we get your tailored application ready."
         hidden={false}
       >
         <div
@@ -53,84 +56,76 @@ const revenueOptions = [
           <span
             class="inline-block w-2 h-2 rounded-full bg-primary animate-ping"
           ></span>
-          Authenticating Node
+          Linking Your Account
         </div>
       </StateScreen>
 
-      <!-- State: Error -->
+      <!-- State: Error / Invalid -->
       <StateScreen
         id="error-state"
         type="error"
-        title="Verification Failed"
-        description="We couldn't verify your access token. It may be expired or invalid."
+        title="Link Expired"
+        description="It look like this link is no longer active. We can help you get a new one."
       >
         <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
           <a
             href="/contact"
-            class="btn-primary px-8! py-4! text-base! flex-1 max-w-[200px] flex items-center justify-center"
+            class="btn-primary px-8 py-4 flex items-center justify-center"
             >Contact Support</a
           >
           <a
             href="/"
-            class="btn-secondary px-8! py-4! text-base! flex-1 max-w-[200px] bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center"
+            class="btn-secondary px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center"
             >Back to Home</a
           >
         </div>
       </StateScreen>
 
-      <!-- State: Success / Already Filled -->
+      <!-- State: Already Vetted -->
       <StateScreen
         id="success-state"
         type="success"
-        title="Already Completed"
-        description="It looks like you've already filled out this audit request. We're already processing your information!"
+        title="All Set!"
+        description="You've already completed the vetting process. Our team is already on top of it!"
       >
         <div class="flex justify-center w-full">
-          <a
-            href="/"
-            class="btn-primary px-12! py-4! text-base! w-full sm:w-auto flex items-center justify-center"
-            >Return to Home</a
-          >
+          <a href="/" class="btn-primary px-12 py-4">Return to Home</a>
         </div>
       </StateScreen>
 
       <!-- State: Submission Success -->
       <StateScreen
-        id="submission-success-state"
+        id="vetting-success-state"
         type="success"
-        title="Request Submitted!"
-        description="Thank you! Your audit request has been received. We will reach out to you shortly via email."
+        title="Application Sent!"
+        description="We've received your details and our team will be in touch within 24 hours to schedule your audit."
       >
         <div class="flex justify-center w-full">
-          <a
-            href="/"
-            class="btn-primary px-12! py-4! text-base! w-full sm:w-auto flex items-center justify-center"
-            >Close & Return Home</a
-          >
+          <a href="/" class="btn-primary px-12 py-4">Close & Return Home</a>
         </div>
       </StateScreen>
 
-      <!-- Audit Form Container -->
+      <!-- Vetting Form Container -->
       <div
-        id="audit-form-container"
+        id="vetting-form-container"
         class="hidden transition-all duration-700 opacity-0 translate-y-4"
       >
         <div class="text-center mb-12">
           <h1
-            class="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4"
+            class="text-4xl sm:text-5xl font-black tracking-tight text-white mb-2"
           >
-            Digital <span class="emphasis">Audit</span>
+            Welcome <span class="emphasis" id="contact-firstname">Friend</span>
           </h1>
           <p class="text-secondary font-medium italic">
-            Please complete the questions below to finalize your audit request.
+            Please provide a few more details to finalize your application.
           </p>
         </div>
 
         <div
           class="bg-white/5 p-8 sm:p-12 rounded-[3rem] border border-white/10 shadow-2xl backdrop-blur-md"
         >
-          <form id="audit-form" class="space-y-6">
-            <input type="hidden" id="audit-id" name="id" required />
+          <form id="vetting-form" class="space-y-6">
+            <input type="hidden" name="token" value={token} />
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <FormInput
@@ -146,10 +141,21 @@ const revenueOptions = [
                 name="companyDomain"
                 placeholder="e.g. acme.com"
                 required
-                pattern="^[a-zA-Z0-9-][a-zA-Z0-9.-]*\\.[a-zA-Z]{2,}$"
+                pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\\.[a-zA-Z]{2,}$"
                 title="Please enter a valid domain (e.g., domain.com)"
               />
             </div>
+
+            <FormInput
+              label="Phone Number"
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="e.g. (555) 000-0000"
+              required
+              pattern="^\\+?[\\d\\s\\-()]{10,}$"
+              title="Please enter a valid phone number"
+            />
 
             <FormSelect
               label="What is your approximate annual revenue?"
@@ -267,7 +273,7 @@ const revenueOptions = [
               id="submit-btn"
               class="btn-primary w-full py-5 text-lg cursor-pointer flex items-center justify-center gap-2 mt-4"
             >
-              <span>Submit Audit Request</span>
+              <span>Complete Vetting</span>
               <Icon
                 name="lucide:loader-2"
                 class="w-5 h-5 animate-spin hidden"
@@ -309,8 +315,8 @@ const revenueOptions = [
         "loading-state",
         "error-state",
         "success-state",
-        "submission-success-state",
-        "audit-form-container",
+        "vetting-success-state",
+        "vetting-form-container",
       ];
       states.forEach((id) => {
         const el = document.getElementById(id);
@@ -318,7 +324,7 @@ const revenueOptions = [
           if (id === stateId) {
             el.classList.remove("hidden");
             el.classList.add("flex");
-            if (id === "audit-form-container") {
+            if (id === "vetting-form-container") {
               el.classList.remove("flex");
               setTimeout(() => {
                 el.classList.remove("opacity-0", "translate-y-4");
@@ -335,53 +341,47 @@ const revenueOptions = [
 
     const handleInitialVerification = async () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const accessToken = urlParams.get("accessToken");
-      const errorMessageLine = document.getElementById("error-message");
+      const token = urlParams.get("token");
+      const firstnameSpan = document.getElementById("contact-firstname");
 
-      if (!accessToken) {
+      if (!token) {
         showState("error-state");
-        if (errorMessageLine)
-          errorMessageLine.textContent = "No access token provided.";
         return;
       }
 
-      const idInput = document.getElementById(
-        "audit-id",
-      ) as HTMLInputElement | null;
-      if (idInput) idInput.value = accessToken;
-
       try {
         const minDelay = new Promise((resolve) => setTimeout(resolve, 1500));
-        const responsePromise = fetch("/.netlify/functions/verify", {
+        const responsePromise = fetch("/api/verify-vetting", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ accessToken }),
+          body: JSON.stringify({ token }),
         });
         const [response] = await Promise.all([responsePromise, minDelay]);
 
         if (response.ok) {
           const data = await response.json().catch(() => ({}));
-          data.completed
+          if (firstnameSpan && data.contactName) {
+            firstnameSpan.textContent = data.contactName;
+          }
+
+          // Check if already submitted locally as a fallback to status check
+          const lastSub = localStorage.getItem("last_vetting_submission");
+          const recentlySubmitted =
+            lastSub && Date.now() - parseInt(lastSub) < 3600000; // 1 hour
+
+          data.completed || recentlySubmitted
             ? showState("success-state")
-            : showState("audit-form-container");
+            : showState("vetting-form-container");
         } else {
           showState("error-state");
-          const data = await response.json().catch(() => ({}));
-          if (errorMessageLine)
-            errorMessageLine.textContent = data.message || "Invalid token.";
         }
       } catch (error) {
         showState("error-state");
-        if (errorMessageLine)
-          errorMessageLine.textContent = "Connection error.";
       }
     };
 
-    handleInitialVerification();
-    document.addEventListener("astro:after-swap", handleInitialVerification);
-
-    const initForms = () => {
-      // Number Input
+    const setupVettingForm = () => {
+      // Number Input Counter
       const hoursInput = document.getElementById(
         "hours-lost",
       ) as HTMLInputElement | null;
@@ -398,7 +398,7 @@ const revenueOptions = [
         };
       }
 
-      // Decision Maker
+      // Decision Maker Toggle
       const radios = document.querySelectorAll('input[name="isDecisionMaker"]');
       const container = document.getElementById(
         "decision-maker-name-container",
@@ -406,6 +406,22 @@ const revenueOptions = [
       const input = document.getElementById(
         "decision-maker-name",
       ) as HTMLInputElement | null;
+      const phoneInput = document.getElementById(
+        "phone",
+      ) as HTMLInputElement | null;
+
+      // Smart Phone Formatting
+      if (phoneInput) {
+        phoneInput.oninput = (e: any) => {
+          let x = e.target.value
+            .replace(/\D/g, "")
+            .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+          if (x[1] && !x[2] && !x[3]) e.target.value = x[1];
+          else if (x[1] && x[2] && !x[3]) e.target.value = `(${x[1]}) ${x[2]}`;
+          else if (x[1] && x[2] && x[3])
+            e.target.value = `(${x[1]}) ${x[2]}-${x[3]}`;
+        };
+      }
       if (radios.length && container && input) {
         radios.forEach((r) => {
           (r as HTMLInputElement).onchange = () => {
@@ -425,9 +441,8 @@ const revenueOptions = [
         });
       }
 
-      // Submission
       const form = document.getElementById(
-        "audit-form",
+        "vetting-form",
       ) as HTMLFormElement | null;
       const btn = document.getElementById(
         "submit-btn",
@@ -436,38 +451,153 @@ const revenueOptions = [
       const text = btn?.querySelector("span");
       const feedback = document.getElementById("form-feedback");
 
+      const clearErrors = () => {
+        form?.querySelectorAll('[id$="-error"]').forEach((el) => {
+          el.textContent = "";
+          el.classList.add("hidden");
+        });
+      };
+
+      const showError = (id: string, msg: string) => {
+        const el = document.getElementById(`${id}-error`);
+        if (el) {
+          el.textContent = msg;
+          el.classList.remove("hidden");
+        }
+      };
+
+      // Clear error on input
+      form?.querySelectorAll("input, select, textarea").forEach((input) => {
+        const id = input.id;
+        input.addEventListener("input", () => {
+          const errorEl = document.getElementById(`${id}-error`);
+          if (errorEl) errorEl.classList.add("hidden");
+          if (feedback) feedback.classList.remove("show");
+        });
+        input.addEventListener("change", () => {
+          const errorEl = document.getElementById(`${id}-error`);
+          if (errorEl) errorEl.classList.add("hidden");
+          if (feedback) feedback.classList.remove("show");
+        });
+      });
+
       if (form) {
         form.onsubmit = async (e) => {
           e.preventDefault();
+          clearErrors();
+
+          // Anti-spam & Cooldown check
+          const last = localStorage.getItem("last_vetting_submission");
+          if (last && Date.now() - parseInt(last) < 600000) {
+            if (feedback) {
+              feedback.textContent =
+                "Please wait a few minutes before submitting again.";
+              feedback.className =
+                "bg-red-500/20 text-red-400 show p-4 rounded-2xl text-center font-medium";
+            }
+            return;
+          }
+
           if (btn) btn.disabled = true;
           if (loader) loader.classList.remove("hidden");
           if (text) text.textContent = "Processing...";
+          if (feedback) feedback.classList.remove("show");
 
           try {
-            const data = Object.fromEntries(new FormData(form));
-            const response = await fetch("/.netlify/functions/audit", {
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+
+            // Honeypot check
+            if (data["bot-field"]) throw new Error("Spam detected");
+
+            // Local Validation
+            let hasErrors = false;
+            if (!data.companyName) {
+              showError("company-name", "Company Name is required");
+              hasErrors = true;
+            }
+            if (!data.companyDomain) {
+              showError("company-domain", "Domain is required");
+              hasErrors = true;
+            } else if (
+              !/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/.test(
+                data.companyDomain.toString(),
+              )
+            ) {
+              showError(
+                "company-domain",
+                "Please enter a valid domain (e.g. company.com)",
+              );
+              hasErrors = true;
+            }
+            if (!data.phone) {
+              showError("phone", "Phone is required");
+              hasErrors = true;
+            } else if (!/^\+?[\d\s\-()]{10,}$/.test(data.phone.toString())) {
+              showError("phone", "Please enter a valid phone number");
+              hasErrors = true;
+            }
+            if (!data.annualRevenue) {
+              showError("annual-revenue", "Revenue range is required");
+              hasErrors = true;
+            }
+            if (!data.problem) {
+              showError("problem", "Problem description is required");
+              hasErrors = true;
+            }
+            if (!data.hoursLost) {
+              showError("hours-lost", "Hours lost is required");
+              hasErrors = true;
+            }
+            if (data.isDecisionMaker === "no" && !data.decisionMakerName) {
+              showError(
+                "decision-maker-name",
+                "Decision maker details required",
+              );
+              hasErrors = true;
+            }
+
+            if (hasErrors) throw new Error("Please fix the mistakes above.");
+
+            const response = await fetch("/api/complete-vetting", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(data),
             });
+
             if (response.ok) {
-              showState("submission-success-state");
+              localStorage.setItem(
+                "last_vetting_submission",
+                Date.now().toString(),
+              );
+              showState("vetting-success-state");
               form.reset();
             } else {
-              throw new Error();
+              const errorData = await response.json();
+              throw new Error(errorData.error || "Submission failed");
             }
-          } catch {
-            showState("submission-success-state"); // Fallback success for demo
+          } catch (err: any) {
+            if (feedback) {
+              feedback.textContent =
+                err.message || "Something went wrong. Please try again.";
+              feedback.className =
+                "bg-red-500/20 text-red-400 show p-4 rounded-2xl text-center font-medium mt-4";
+            }
           } finally {
             if (btn) btn.disabled = false;
             if (loader) loader.classList.add("hidden");
-            if (text) text.textContent = "Submit Audit Request";
+            if (text) text.textContent = "Complete Vetting";
           }
         };
       }
     };
 
-    initForms();
-    document.addEventListener("astro:after-swap", initForms);
+    handleInitialVerification();
+    setupVettingForm();
+
+    document.addEventListener("astro:after-swap", () => {
+      handleInitialVerification();
+      setupVettingForm();
+    });
   </script>
 </Layout>
